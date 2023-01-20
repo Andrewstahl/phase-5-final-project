@@ -1,28 +1,42 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import NavBar from "./NavBar";
+import Login from "../pages/Login";
 
 function App() {
   const [count, setCount] = useState(0);
+  const [user, setUser] = useState(null)
 
   useEffect(() => {
-    fetch("/hello")
+    fetch("/me")
       .then((r) => r.json())
-      .then((data) => setCount(data.count));
+      .then((user) => setUser(user));
   }, []);
 
+  function handleLogout() {
+    fetch("/logout", {
+      method: "DELETE",
+    }).then((r) => {
+      if (r.ok) {
+        setUser(null)
+      }
+    }); 
+  }
+
+  if (!user) return <Login />
+  // return <Login />
+
   return (
-    <BrowserRouter>
+    <>
+      <NavBar onLogoutClick={handleLogout}/>
       <div className="App">
         <Routes>
-          <Route path="/testing" element={
-            <h1>Test Route</h1>
-          } />
-          <Route path="/" element={
+          <Route exact path="/" element={
             <h1>Page Count: {count}</h1>
           } />
         </Routes>
       </div>
-    </BrowserRouter>
+    </>
   );
 }
 
