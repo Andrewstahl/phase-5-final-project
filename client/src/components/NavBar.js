@@ -2,33 +2,35 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import "../assets/NavBar.css"
 
-const linkStyles = {
-  width: "100%",
-  height: "10%",
-  padding: ".5em",
-  fontSize: "25px",
-  textDecoration: "none",
-  color: "white",
-  fontWeight: "bold",
-  textAlign: "center",
-  alignItems: "center",
-  verticalAlign: "center",
-};
 
-const linkStylesActive = {
-  ...linkStyles,
-  background: "grey",
-};
-
-const navLinkStyles = {
-  display: "flex",
-  borderTop: "10px white",
-  borderBottom: "1px solid purple",
-  backgroundColor: "rgb(84, 77, 184)",
-  padding: "0px 300px",
-};
-
-function NavBar({ setUser, onLogoutClick }) {
+function NavBar({ onLogoutClick, siteMode, onSiteToggle }) {
+  const linkStyles = {
+    width: "100%",
+    height: "10%",
+    padding: ".5em",
+    fontSize: "25px",
+    textDecoration: "none",
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
+    alignItems: "center",
+    verticalAlign: "center",
+  };
+  
+  const linkStylesActive = {
+    ...linkStyles,
+    background: "grey",
+  };
+  
+  const siteModeColors = siteMode === "Selling" ? "rgb(84, 77, 184)" : "rgb(27, 215, 96)"
+  
+  const navLinkStyles = {
+    display: "flex",
+    borderTop: "10px white",
+    borderBottom: "1px solid purple",
+    backgroundColor: siteModeColors,
+    padding: "0px 300px",
+  };
 
   return (
     <div className="navbar-div">
@@ -38,7 +40,7 @@ function NavBar({ setUser, onLogoutClick }) {
           exact
           style={({ isActive }) => (isActive ? linkStylesActive : linkStyles)}
         >
-          Your Postings
+          Postings
         </NavLink>
         <NavLink
           to="/conversations"
@@ -69,8 +71,8 @@ function NavBar({ setUser, onLogoutClick }) {
           Profile
         </NavLink>
       </div>
-      <button className="system-toggle-button">
-        Switch to Selling
+      <button className="system-toggle-button" onClick={onSiteToggle}>
+        Switch to {siteMode === "Selling" ? "Buying" : "Selling"}
       </button>
       <button className="logout-button" onClick={onLogoutClick}>
         Logout
