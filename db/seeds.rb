@@ -7,7 +7,7 @@
 #   Character.create(name: "Luke", movie: movies.first)
 
 # 50.times do
-#   User.create(
+#   user = User.create(
 #     username: Faker::Name.name.gsub(" ", "").downcase,
 #     password: "Testing123",
 #     password_confirmation: "Testing123"
