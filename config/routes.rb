@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  resources :postings
+  resources :buyers
+  resources :freelancers
   resources :users
 
   get "/me", to: "users#show"
