@@ -24,9 +24,14 @@ import Login from "../pages/Login";
  *      ├─── Conversation
  *      └─── Conversation
  * ├─── Projects
- *      ├─── Project
- *      ├─── Project
- *      └─── Project
+ *      ├─── Requested
+ *           ├─── Project
+ *           ├─── Project
+ *           └─── Project
+ *      └─── Pending
+ *           ├─── Project
+ *           ├─── Project
+ *           └─── Project
  * ├─── Search
  *      ├─── User
  *      ├─── User
@@ -37,6 +42,7 @@ import Login from "../pages/Login";
 
 function App() {
   const [user, setUser] = useState(null);
+  const [siteMode, setSiteMode] = useState("Selling")
 
   useEffect(() => {
     fetch("/me").then((r) => {
@@ -56,14 +62,22 @@ function App() {
     });
   }
 
-  if (!user) return <Login />;
+  function handleSiteToggle() {
+    if (siteMode === "Selling") {
+      setSiteMode("Buying")
+    } else {
+      setSiteMode("Selling")
+    }
+  }
+
+  if (!user) return <Login onLogin={setUser}/>;
 
   return (
     <>
-      <NavBar onLogoutClick={handleLogout} />
+      <NavBar onLogoutClick={handleLogout} siteMode={siteMode} onSiteToggle={handleSiteToggle}/>
       <div className="App">
         <Routes>
-          <Route exact path="/" element={<h1>Postings</h1>} />
+          <Route exact path="/postings" element={<h1>Postings</h1>} />
           <Route exact path="/conversations" element={<h1>Conversations</h1>} />
           <Route exact path="/projects" element={<h1>Projects</h1>} />
           <Route exact path="/search" element={<h1>Search</h1>} />
