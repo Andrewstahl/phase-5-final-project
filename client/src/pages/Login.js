@@ -1,7 +1,7 @@
-import "../assets/Login.css";
+import "../features/Login/assets/Login.css";
 import React, { useState } from "react";
-import SignUpForm from "../components/SignUpForm";
-import LoginForm from "../components/LoginForm";
+import SignUpForm from "../features/Login/components/SignUpForm";
+import LoginForm from "../features/Login/components/LoginForm";
 
 function Login({ onLogin }) {
   const [showLogin, setShowLogin] = useState(true);
