@@ -1,16 +1,6 @@
-import React, { useState } from "react";
-import PostingForm from "../features/Postings/components/PostingForm";
+import React from "react";
+import PostingsIndex from "../features/Postings";
 
-export default function Postings() {
-  const [showPostingForm, setShowPostingForm] = useState(false);
-
-  return (
-    <>
-      <h1>Postings</h1>
-      <button onClick={() => setShowPostingForm(!showPostingForm)}>
-        Show Posting Form
-      </button>
-      {showPostingForm ? <PostingForm /> : null}
-    </>
-  );
+export default function Postings({ user }) {
+  return <PostingsIndex user={user} />;
 }
