@@ -3,12 +3,21 @@
 }
 
 .posting-div {
-  border: 5px solid black;
+  border: 2px solid gray;
   margin: 5% 20%;
+  padding: 10px 20px;
+  text-align: center;
+  font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .posting__header { 
   font-weight: bold;
+  margin: 10px 0px;
+}
+
+.posting__price-info {
+  font-weight: bold;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 .posting__categories {
@@ -19,9 +28,7 @@
   margin: 20px;
   padding: 2px 5px;
   color: white;
-  font-weight: bold;
   border-radius: 5px;
-  font-style: italic;
   display: inline-block;
   margin: 5px 2px;
 }
