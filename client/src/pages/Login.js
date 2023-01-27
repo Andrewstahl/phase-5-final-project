@@ -1,4 +1,4 @@
-import "../features/Login/assets/Login.css";
+import "../features/Login/assets/login.css";
 import React, { useState } from "react";
 import SignUpForm from "../features/Login/components/SignUpForm";
 import LoginForm from "../features/Login/components/LoginForm";
