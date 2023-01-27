@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
-  # before_action :current_user, only: [:show, :update, :destroy]
-  
-  skip_before_action :authorized, only: :create
+  before_action :current_user, only: [:show, :update, :destroy]
+  skip_before_action :authorized, only: [:index, :create]
   
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
   
@@ -19,6 +18,8 @@ class UsersController < ApplicationController
   # POST /users
   def create
     @user = User.create!(user_params)
+    @freelancer = Freelancer.create!(user: @user, rating: 0.0)
+    @buyer = Buyer.create!(user: @user, rating: 0.0)
     session[:user_id] = @user.id
     render json: @user, status: :created
   end
