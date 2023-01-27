@@ -1,10 +1,16 @@
-import React from "react";
-import PostingForm from "../components/PostingForm";
+import React, { useState } from "react";
+import PostingForm from "../features/Postings/components/PostingForm";
 
 export default function Postings() {
-  
-  return (
-    <PostingForm />
-  )
+  const [showPostingForm, setShowPostingForm] = useState(false);
 
+  return (
+    <>
+      <h1>Postings</h1>
+      <button onClick={() => setShowPostingForm(!showPostingForm)}>
+        Show Posting Form
+      </button>
+      {showPostingForm ? <PostingForm /> : null}
+    </>
+  );
 }
