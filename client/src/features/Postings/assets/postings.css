@@ -1,0 +1,31 @@
+.page-header {
+  text-align: center;
+}
+
+.posting-div {
+  border: 5px solid black;
+  margin: 5% 20%;
+}
+
+.posting__header { 
+  font-weight: bold;
+}
+
+.posting__categories {
+  text-align: center;
+}
+
+.posting__category {
+  margin: 20px;
+  padding: 2px 5px;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  font-style: italic;
+  display: inline-block;
+  margin: 5px 2px;
+}
+
+.color-freelancer {
+  background-color: var(--label-purple);
+}
