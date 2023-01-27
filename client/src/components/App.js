@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import NavBar from "./NavBar";
 import Login from "../pages/Login";
+import Postings from "../pages/Postings";
 
 /**
  * App Hierarchy
@@ -77,7 +78,7 @@ function App() {
       <NavBar onLogoutClick={handleLogout} siteMode={siteMode} onSiteToggle={handleSiteToggle}/>
       <div className="App">
         <Routes>
-          <Route exact path="/postings" element={<h1>Postings</h1>} />
+          <Route exact path="/postings" element={<Postings user={user} />} />
           <Route exact path="/conversations" element={<h1>Conversations</h1>} />
           <Route exact path="/projects" element={<h1>Projects</h1>} />
           <Route exact path="/search" element={<h1>Search</h1>} />
