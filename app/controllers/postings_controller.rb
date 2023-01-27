@@ -20,6 +20,9 @@ class PostingsController < ApplicationController
     if @user
       @posting = Posting.create(posting_params)
       @posting.user = @user
+      # We initialize the categories as an array, so we need
+      # to resave the categories from the parameters
+      @posting.update(categories: params[:categories])
       @posting.save!
       render json: @posting, status: :created
     else
@@ -56,7 +59,7 @@ class PostingsController < ApplicationController
   end
 
   def posting_params
-    params.permit(:title, :description, :categories, :price, :price_unit, :project_type, :user_id).select { |k, v| !v.nil? }
+    params.permit(:title, :description, :categories, :price, :price_unit, :posting_type, :user_id).select { |k, v| !v.nil? }
   end
 
   def render_unprocessable_entity_response(invalid)
