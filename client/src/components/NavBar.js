@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import "../assets/NavBar.css"
+import "../assets/navbar.css"
 
 
 function NavBar({ onLogoutClick, siteMode, onSiteToggle }) {
