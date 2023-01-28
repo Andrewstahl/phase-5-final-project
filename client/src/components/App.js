@@ -3,6 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import NavBar from "./NavBar";
 import Login from "../pages/Login";
 import Postings from "../pages/Postings";
+import { UserProvider } from "../UserContext";
+import { SystemModeProvider } from "../SystemModeContext";
 
 /**
  * App Hierarchy
@@ -43,7 +45,7 @@ import Postings from "../pages/Postings";
 
 function App() {
   const [user, setUser] = useState(null);
-  const [siteMode, setSiteMode] = useState("Selling")
+  const [siteMode, setSiteMode] = useState("freelancing")
 
   useEffect(() => {
     fetch("/me").then((r) => {
@@ -64,10 +66,10 @@ function App() {
   }
 
   function handleSiteToggle() {
-    if (siteMode === "Selling") {
+    if (siteMode === "Freelancing") {
       setSiteMode("Buying")
     } else {
-      setSiteMode("Selling")
+      setSiteMode("Freelancing")
     }
   }
 
@@ -75,16 +77,21 @@ function App() {
 
   return (
     <>
-      <NavBar onLogoutClick={handleLogout} siteMode={siteMode} onSiteToggle={handleSiteToggle}/>
-      <div className="App">
-        <Routes>
-          <Route exact path="/postings" element={<Postings user={user} />} />
-          <Route exact path="/conversations" element={<h1>Conversations</h1>} />
-          <Route exact path="/projects" element={<h1>Projects</h1>} />
-          <Route exact path="/search" element={<h1>Search</h1>} />
-          <Route exact path="/profile" element={<h1>Profile</h1>} />
-        </Routes>
-      </div>
+      {/* <UserProvider> */}
+        <SystemModeProvider>
+          <NavBar onLogoutClick={handleLogout} onSiteToggle={handleSiteToggle}/>
+          <div className="App">
+            <Routes>
+              {/* <Route exact path={`/postings/${siteMode}`} element={<Postings user={user} />} /> */}
+              <Route exact path="/postings/" element={<Postings user={user} />} />
+              <Route exact path="/conversations" element={<h1>Conversations</h1>} />
+              <Route exact path="/projects" element={<h1>Projects</h1>} />
+              <Route exact path="/search" element={<h1>Search</h1>} />
+              <Route exact path="/profile" element={<h1>Profile</h1>} />
+            </Routes>
+          </div>
+        </SystemModeProvider>
+      {/* </UserProvider> */}
     </>
   );
 }
