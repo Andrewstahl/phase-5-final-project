@@ -156,3 +156,7 @@ form + form {
 .colors-buyer {
   background-color: var(--green-buyer);
 }
+
+.page-header {
+  text-align: center;
+}
