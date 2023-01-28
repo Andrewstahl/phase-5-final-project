@@ -3,6 +3,7 @@
   --label-red: rgb(184, 77, 77);
   --label-grey: rgb(154, 154, 154);
   --label-dark-grey: rgb(120, 120, 120);
+  --label-green: rgb(94, 198, 132);
   --label-body: rgb(240, 242, 245);
 }
 
@@ -87,7 +88,7 @@ div.form-action-buttons {
 
 button.cancel,
 button.delete {
-  width: 100%;
+  /* width: 100%; */
   background-color: var(--label-red);
   color: white;
   font-weight: bold;
