@@ -2,8 +2,21 @@
   text-align: center;
 }
 
+.posting-form-button-div {
+  text-align: center;
+}
+
+.posting-form-button {
+  margin: 5px;
+  height: 50px;
+  font-size: large;
+  color: white;
+  font-weight: bold
+}
+
 .posting-div {
-  border: 2px solid gray;
+  border-style: solid;
+  border-color: var(--label-purple);
   margin: 5% 20%;
   padding: 10px 20px;
   text-align: center;
@@ -18,10 +31,6 @@
 .posting__price-info {
   font-weight: bold;
   font-family: 'Courier New', Courier, monospace;
-}
-
-.posting__categories {
-  text-align: center;
 }
 
 .posting__category {
@@ -39,4 +48,14 @@
 
 .color-buyer {
   background-color: var(--label-green);
+}
+
+.posting-buttons-div {
+  height: 60%;
+  margin: auto;
+  width: 100%;
+  margin-top: 10px;
+  border-top-width: 1px;
+  border-top-style: solid;
+  border-top-color: var(--label-grey);
 }

@@ -1,9 +1,9 @@
 :root {
-  --label-purple: rgb(84, 77, 184);
+  --purple-freelancer: rgb(84, 77, 184);
   --label-red: rgb(184, 77, 77);
-  --label-grey: rgb(154, 154, 154);
-  --label-dark-grey: rgb(120, 120, 120);
-  --label-green: rgb(94, 198, 132);
+  --grey: rgb(154, 154, 154);
+  --grey-dark: rgb(120, 120, 120);
+  --green-buyer: rgb(94, 198, 132);
   --label-body: rgb(240, 242, 245);
 }
 
@@ -28,7 +28,7 @@ h1 {
 }
 
 label {
-  color: var(--label-purple);
+  color: var(--purple-freelancer);
   font-weight: bolder;
 }
 
@@ -69,7 +69,7 @@ textarea {
 input[type="submit"],
 button.login__signup__switch__button {
   width: 100%;
-  background-color: var(--label-purple);
+  background-color: var(--purple-freelancer);
   color: white;
   font-weight: bold;
   font-size: 20px;
@@ -87,9 +87,10 @@ div.form-action-buttons {
 }
 
 button.cancel,
-button.delete {
+button.delete,
+button.posting-button-edit {
   /* width: 100%; */
-  background-color: var(--label-red);
+  /* background-color: var(--label-red); */
   color: white;
   font-weight: bold;
   font-size: 20px;
@@ -100,6 +101,7 @@ button.delete {
   cursor: pointer;
 }
 
+button.cancel,
 button.delete,
 input.delete-account {
   background-color: var(--label-red);
@@ -115,7 +117,7 @@ button.log-edit-button {
   margin: 5px;
   height: 50px;
   font-size: large;
-  background-color: var(--label-purple);
+  background-color: var(--purple-freelancer);
   color: white;
   font-weight: bold;
 }
@@ -145,4 +147,12 @@ div.profile-change-container {
 
 form + form {
   margin-top: 20px;
+}
+
+.colors-freelancer {
+  background-color: var(--purple-freelancer);
+}
+
+.colors-buyer {
+  background-color: var(--green-buyer);
 }

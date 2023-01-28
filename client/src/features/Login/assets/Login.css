@@ -6,7 +6,7 @@ div.login-page-container {
 button.login__signup__switch__button {
   width: 100%;
   margin: 25px 0px;
-  background-color: var(--label-dark-grey);
+  background-color: var(--grey-dark);
 }
 
 h1.login-page-header {
@@ -19,8 +19,8 @@ h1.login-page-header {
 h3 {
   width: 100%;
   text-align: center;
-  color: var(--label-dark-grey);
-  border-bottom: 1px solid var(--label-grey);
+  color: var(--grey-dark);
+  border-bottom: 1px solid var(--grey);
   line-height: 0.1em;
   margin: 50px 0 20px;
   font-style: italic;

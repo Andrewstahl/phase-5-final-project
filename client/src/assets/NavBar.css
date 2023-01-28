@@ -1,9 +1,9 @@
 :root {
-  --label-purple: rgb(84, 77, 184);
+  --purple-freelancer: rgb(84, 77, 184);
   --label-red: rgb(184, 77, 77);
-  --label-grey: rgb(154, 154, 154);
-  --label-dark-grey: rgb(120, 120, 120);
-  --label-green: rgb(94, 198, 132);
+  --grey: rgb(154, 154, 154);
+  --grey-dark: rgb(120, 120, 120);
+  --green-buyer: rgb(94, 198, 132);
   --label-body: rgb(240, 242, 245);
 }
 
@@ -24,12 +24,12 @@ button.system-toggle-button {
 
 .colors-freelancer,
 .opposite-colors-buyer {
-  background-color: var(--label-purple)
+  background-color: var(--purple-freelancer)
 }
 
 .colors-buyer,
 .opposite-colors-freelancer {
-  background-color: var(--label-green);
+  background-color: var(--green-buyer);
 }
 
 button.logout-button {
