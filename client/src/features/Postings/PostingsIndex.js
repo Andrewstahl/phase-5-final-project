@@ -29,7 +29,7 @@ export default function PostingsIndex({ user }) {
     <>
       <h1 className="page-header">Postings</h1>
       <div className="posting-form-button-div">
-        <button className={`posting-form-button color-${systemMode.toLowerCase()}`} onClick={togglePostingForm}>
+        <button className={`posting-form-button colors-${systemMode.toLowerCase()}`} onClick={togglePostingForm}>
           Show Posting Form
         </button>
       </div>
