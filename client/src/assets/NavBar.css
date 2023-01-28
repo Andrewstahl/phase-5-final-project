@@ -18,9 +18,13 @@ button.system-toggle-button {
   font-size: 25px;
 }
 
+/* .navbar-links {
+  background-color: var(--label-red);
+} */
+
 .colors-freelancer,
 .opposite-colors-buyer {
-  color: var(--label-purple)
+  background-color: var(--label-purple)
 }
 
 .colors-buyer,
