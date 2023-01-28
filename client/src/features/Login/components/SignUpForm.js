@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Error from "../../../styles/Error";
+import Error from "../../../components/Error";
 
 function SignUpForm({ onLogin }) {
   const [username, setUsername] = useState("");
