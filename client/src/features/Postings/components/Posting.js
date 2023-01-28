@@ -1,6 +1,9 @@
 import React from "react";
+import { useSystemMode } from "../../../SystemModeContext";
 
 export default function Posting({ posting, onEdit }) {
+  const systemMode = useSystemMode()
+  
   return (
     <>
       <div className="posting-div">
@@ -31,8 +34,10 @@ export default function Posting({ posting, onEdit }) {
             );
           })}
         </div>
-        <button onClick={() => onEdit(posting)}>Edit</button>
-        <button className="delete">Delete</button>
+        <div className="posting-buttons-div">
+          <button className={`posting-button-edit colors-${systemMode.toLowerCase()}`} onClick={() => onEdit(posting)}>Edit</button>
+          <button className="delete">Delete</button>
+        </div>
       </div>
     </>
   );
