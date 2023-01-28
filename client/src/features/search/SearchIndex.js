@@ -18,6 +18,10 @@ export default function SearchIndex({ user }) {
   function handleSearch(searchInput) {
     setSearch(searchInput)
   }
+
+  // Possibly add in functionality to filter out own user profile
+  // const searchResults = results.filter((result) => result.id !== user.id);
+
   const filteredResults = results.filter((result) => result.username.includes(search))
 
   return (
