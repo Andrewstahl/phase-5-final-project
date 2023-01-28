@@ -2,8 +2,8 @@ import React from "react";
 import { useSystemMode } from "../../../SystemModeContext";
 
 export default function Posting({ posting, onEdit }) {
-  const systemMode = useSystemMode()
-  
+  const systemMode = useSystemMode();
+
   return (
     <>
       <div className="posting-div">
@@ -22,20 +22,23 @@ export default function Posting({ posting, onEdit }) {
         </div>
         <div className="posting__categories">
           {posting.categories.map((category) => {
-            let spanClassName =
-              posting.posting_type === "Freelancer"
-                ? "color-freelancer"
-                : "color-buyer";
-            spanClassName = "posting__category " + spanClassName;
             return (
-              <span key={category.index} className={spanClassName}>
+              <span
+                key={category.index}
+                className={`posting__category colors-${posting.posting_type.toLowerCase()}`}
+              >
                 {category}
               </span>
             );
           })}
         </div>
         <div className="posting-buttons-div">
-          <button className={`posting-button-edit colors-${systemMode.toLowerCase()}`} onClick={() => onEdit(posting)}>Edit</button>
+          <button
+            className={`posting-button-edit colors-${systemMode.toLowerCase()}`}
+            onClick={() => onEdit(posting)}
+          >
+            Edit
+          </button>
           <button className="delete">Delete</button>
         </div>
       </div>
