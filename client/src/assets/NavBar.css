@@ -1,11 +1,31 @@
-button.logout-button, button.system-toggle-button {
+:root {
+  --label-purple: rgb(84, 77, 184);
+  --label-red: rgb(184, 77, 77);
+  --label-grey: rgb(154, 154, 154);
+  --label-dark-grey: rgb(120, 120, 120);
+  --label-green: rgb(94, 198, 132);
+  --label-body: rgb(240, 242, 245);
+}
+
+button.logout-button,
+button.system-toggle-button {
   border-radius: 5px;
   position: fixed;
   top: 10px;
   font-weight: bold;
   background-color: white;
-  color: rgb(84, 77, 184);
+  /* color: rgb(84, 77, 184); */
   font-size: 25px;
+}
+
+.colors-freelancer,
+.opposite-colors-buyer {
+  color: var(--label-purple)
+}
+
+.colors-buyer,
+.opposite-colors-freelancer {
+  background-color: var(--label-green);
 }
 
 button.logout-button {
