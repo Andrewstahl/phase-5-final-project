@@ -36,3 +36,7 @@
 .color-freelancer {
   background-color: var(--label-purple);
 }
+
+.color-buyer {
+  background-color: var(--label-green);
+}
