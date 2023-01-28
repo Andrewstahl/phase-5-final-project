@@ -16,7 +16,7 @@
 
 .posting-div {
   border-style: solid;
-  border-color: var(--label-purple);
+  border-color: var(--purple-freelancer);
   margin: 5% 20%;
   padding: 10px 20px;
   text-align: center;
@@ -42,12 +42,12 @@
   margin: 5px 2px;
 }
 
-.color-freelancer {
-  background-color: var(--label-purple);
+.colors-freelancer {
+  background-color: var(--purple-freelancer);
 }
 
-.color-buyer {
-  background-color: var(--label-green);
+.colors-buyer {
+  background-color: var(--green-buyer);
 }
 
 .posting-buttons-div {
@@ -57,5 +57,5 @@
   margin-top: 10px;
   border-top-width: 1px;
   border-top-style: solid;
-  border-top-color: var(--label-grey);
+  border-top-color: var(--grey);
 }
