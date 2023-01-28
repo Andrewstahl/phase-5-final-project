@@ -23,22 +23,20 @@ function NavBar({ onLogoutClick, siteMode, onSiteToggle }) {
   
   const linkStylesActive = {
     ...linkStyles,
-    background: "grey",
+    borderAround: "5px grey",
   };
 
-  const siteModeColors = systemMode === "Freelancer" ? "rgb(84, 77, 184)" : "rgb(27, 215, 96)"
-  
   const navLinkStyles = {
     display: "flex",
+    margin: "10px 5px",
     borderTop: "10px white",
-    borderBottom: "1px solid purple",
-    backgroundColor: siteModeColors,
+    // borderBottom: "1px solid purple",
     padding: "0px 300px",
   };
 
   return (
     <div className="navbar-div">
-      <div style={{ ...navLinkStyles }}>
+      <div className={`navbar-links colors-${systemMode.toLowerCase()}`} style={{ ...navLinkStyles }}>
         <NavLink
           // to={`/postings/${siteMode.toLowerCase()}`}
           to="/postings"
@@ -46,6 +44,13 @@ function NavBar({ onLogoutClick, siteMode, onSiteToggle }) {
           style={({ isActive }) => (isActive ? linkStylesActive : linkStyles)}
         >
           Postings
+        </NavLink>
+        <NavLink
+          to="/search"
+          exact
+          style={({ isActive }) => (isActive ? linkStylesActive : linkStyles)}
+        >
+          Search
         </NavLink>
         <NavLink
           to="/conversations"
@@ -61,14 +66,7 @@ function NavBar({ onLogoutClick, siteMode, onSiteToggle }) {
         >
           Projects
         </NavLink>
-        <NavLink
-          to="/search"
-          exact
-          style={({ isActive }) => (isActive ? linkStylesActive : linkStyles)}
-        >
-          Search
-        </NavLink>
-        <NavLink
+       <NavLink
           to="/profile"
           exact
           style={({ isActive }) => (isActive ? linkStylesActive : linkStyles)}
