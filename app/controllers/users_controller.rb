@@ -16,6 +16,7 @@ class UsersController < ApplicationController
   end
   
   # POST /users
+  # POST /signup
   def create
     @user = User.create!(user_params)
     @freelancer = Freelancer.create!(user: @user, rating: 0.0)
