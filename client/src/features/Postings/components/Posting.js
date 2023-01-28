@@ -32,6 +32,7 @@ export default function Posting({ posting, onEdit }) {
           })}
         </div>
         <button onClick={() => onEdit(posting)}>Edit</button>
+        <button className="delete">Delete</button>
       </div>
     </>
   );
