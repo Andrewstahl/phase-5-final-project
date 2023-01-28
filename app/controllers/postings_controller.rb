@@ -7,7 +7,8 @@ class PostingsController < ApplicationController
 
   # GET /postings/
   def index
-    render json: Posting.all
+    @postings = Posting.all
+    render json: @postings
   end
   
   # GET /postings/:id
@@ -34,8 +35,12 @@ class PostingsController < ApplicationController
   
   # PATCH/PUT /posting/:id
   def update
-    @posting = Posting.update!(posting_params)
-    render json: @posting, status: :created
+    if @user.id == @posting.user_id
+      @posting = Posting.update!(posting_params)
+      render json: @posting, status: :created
+    else
+      render_not_authorized_response
+    end
   end
 
   # DELETE /postings/:id
