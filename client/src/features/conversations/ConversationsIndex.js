@@ -8,6 +8,7 @@ import MessageBox from "./components/MessageBox";
 
 export default function ConversationsIndex({ user }) {
   const [conversations, setConversations] = useState([])
+  const [currentMessages, setCurrentMessages] = useState([])
   const [currentConversation, setCurrentConversation] = useState({})
   const [currentMessage, setCurrentMessage] = useState("")
 
@@ -17,13 +18,21 @@ export default function ConversationsIndex({ user }) {
     fetch("/conversations")
     .then((r) => {
       if (r.ok) {
-        r.json().then(conversations => setConversations(conversations))
+        r.json().then(conversations => {
+          setConversations(conversations)
+          setCurrentMessages(conversations.messages)
+        })
       }
     })
   }, [])
 
   function handleSelect(conversation) {
     setCurrentConversation(conversation)
+    setCurrentMessages(conversation.messages)
+  }
+
+  function handleAddMessage(message) {
+    setCurrentMessages([...currentMessages, message])
   }
 
   return (
@@ -38,7 +47,7 @@ export default function ConversationsIndex({ user }) {
             <ConversationList user={user} conversations={conversations} onSelect={handleSelect} />
           </div>
           <div className="message__element">
-            <MessageList user={user} messages={currentConversation.messages} />
+            <MessageList user={user} messages={currentMessages} />
             <MessageBox message={currentMessage}/>
           </div>
         </div>
