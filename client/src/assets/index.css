@@ -71,7 +71,6 @@ textarea {
 input[type="submit"],
 button.login__signup__switch__button {
   width: 100%;
-  background-color: var(--purple-freelancer);
   color: white;
   font-weight: bold;
   font-size: 20px;
