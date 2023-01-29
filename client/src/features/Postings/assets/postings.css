@@ -15,16 +15,17 @@
 }
 
 .posting-div {
-  /* border-style: solid; */
-  /* border-color: var(--purple-freelancer); */
   margin-top: 20px;
-  /* padding: 10px 20px; */
+  margin-right: 20px;
+  width: 500px;
   text-align: center;
   font-family: Georgia, 'Times New Roman', Times, serif;
+  display: inline-block;
 }
 
 .posting__list__div {
   padding: 20px;
+  text-align: center;
 }
 
 .posting__header { 
