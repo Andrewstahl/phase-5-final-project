@@ -6,7 +6,7 @@ export default function Posting({ posting, onEdit }) {
 
   return (
     <>
-      <div className="posting-div">
+      <div className="posting-div form-formatting">
         <h2 className="posting__header">{posting.title}</h2>
         <p className="posting__description">
           {/* Only show the first 30 words of the description if there
@@ -32,9 +32,10 @@ export default function Posting({ posting, onEdit }) {
             );
           })}
         </div>
-        <div className="posting-buttons-div">
+        <hr></hr>
+        <div className="posting__action__buttons__div">
           <button
-            className={`posting-button-edit colors-${systemMode.toLowerCase()}`}
+            className={`posting__button-edit colors-${systemMode.toLowerCase()}`}
             onClick={() => onEdit(posting)}
           >
             Edit
