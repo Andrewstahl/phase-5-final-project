@@ -90,9 +90,7 @@ div.form-action-buttons {
 
 button.cancel,
 button.delete,
-button.posting-button-edit {
-  /* width: 100%; */
-  /* background-color: var(--label-red); */
+button.posting__button-edit {
   color: white;
   font-weight: bold;
   font-size: 20px;
