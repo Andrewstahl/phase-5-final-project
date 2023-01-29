@@ -1,5 +1,6 @@
 import React from "react";
 import { useSystemMode } from "../../../SystemModeContext";
+import moment from "moment";
 
 export default function Message({ user, message }) {
   const systemMode = useSystemMode()
@@ -11,7 +12,8 @@ export default function Message({ user, message }) {
       }`}
     >
       <h4>{message.sender}</h4>
-      <p>{message.body}</p>
+      <p className="message__body">{message.body}</p>
+      <span className="message__time">{moment(message.updated_at).format("M/D/YY h:mm a")}</span>
     </div>
   );
 }
