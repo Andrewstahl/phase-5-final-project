@@ -2,11 +2,14 @@ import React from "react";
 import Message from "./Message";
 
 export default function MessageList({ user, messages }) {
-  console.log(messages)
+  // console.log(messages)
   if (messages) {
-    const messageElements = messages.map((message) => {
+    let messageElements = messages.map((message) => {
       return <Message key={message.id} user={user} message={message} />;
     });
+    if (messageElements.length === 0) {
+      messageElements = <h2 className="message__placeholder__header">There are No Messages for This Conversation</h2>
+    }
     return (
       <div className="message__element__messages__list">{messageElements}</div>
     );
@@ -15,7 +18,7 @@ export default function MessageList({ user, messages }) {
   // This is the placeholder if we don't have any conversations selected
   return (
     <div className="message__element__messages__list">
-      <h2 className="message__placeholder__header">Select a Conversation To See Messages</h2>
+      <h2 className="message__placeholder__header">Please Select a Conversation To See Messages</h2>
     </div>
   );
 }
