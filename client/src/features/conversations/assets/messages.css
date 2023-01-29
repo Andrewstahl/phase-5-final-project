@@ -1,0 +1,27 @@
+h2.message__placeholder__header {
+  font-style: italic;
+  height: 90%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+div.message {
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid var(--grey);
+  border-radius: 10%;
+  width:fit-content;
+  height: fit-content;
+  max-width: 30%;
+}
+
+div.message-sender {
+  color: white;
+  text-align: right;
+}
+
+div.message-receiver {
+  text-align: left;
+}
