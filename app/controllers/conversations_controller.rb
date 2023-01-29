@@ -16,11 +16,12 @@ class ConversationsController < ApplicationController
   # POST /conversations
   def create
     @conversation = Conversation.new(conversation_params)
+    @conversation.update(:users, conversation_params[:users])
 
     if @conversation.save
       render json: @conversation, status: :created, location: @conversation
     else
-      render json: @conversation.errors, status: :unprocessable_entity
+      render json: { errors: [@conversation.errors.full_messages] }, status: :unprocessable_entity
     end
   end
 
@@ -29,7 +30,7 @@ class ConversationsController < ApplicationController
     if @conversation.update(conversation_params)
       render json: @conversation
     else
-      render json: @conversation.errors.full_messages, status: :unprocessable_entity
+      render json: { errors: [@conversation.errors.full_messages] }, status: :unprocessable_entity
     end
   end
 
