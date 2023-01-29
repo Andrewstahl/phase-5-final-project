@@ -11,5 +11,4 @@ class Posting < ApplicationRecord
 
   validates :posting_type, inclusion: { in: ["Freelancer", "Buyer"] }
 
-  serialize :categories, Array
 end
