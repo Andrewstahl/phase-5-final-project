@@ -20,6 +20,7 @@ class PostingsController < ApplicationController
   def create
     if @user
       @posting = Posting.create(posting_params)
+      @posting.update(categories: params[:categories])
       @posting.user = @user
       # We initialize the categories as an array, so we need
       # to resave the categories from the parameters
