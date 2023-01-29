@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_29_125453) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_29_131511) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -23,7 +23,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_29_125453) do
   end
 
   create_table "conversations", force: :cascade do |t|
-    t.text "users"
+    t.integer "user_ids", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -36,11 +36,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_29_125453) do
     t.index ["user_id"], name: "index_freelancers_on_user_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.bigint "conversation_id", null: false
+    t.text "body"
+    t.integer "receiver_id"
+    t.integer "sender_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["conversation_id"], name: "index_messages_on_conversation_id"
+  end
+
   create_table "postings", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.string "title"
     t.text "description"
-    t.text "categories"
+    t.string "categories", default: [], array: true
     t.float "price"
     t.string "price_unit"
     t.string "posting_type"
@@ -58,5 +68,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_29_125453) do
 
   add_foreign_key "buyers", "users"
   add_foreign_key "freelancers", "users"
+  add_foreign_key "messages", "conversations"
   add_foreign_key "postings", "users"
 end
