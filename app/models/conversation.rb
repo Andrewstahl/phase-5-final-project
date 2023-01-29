@@ -1,5 +1,6 @@
 class Conversation < ApplicationRecord
   has_many :messages
-  
-  serialize :users, Array
+  scope :user_messages, ->(user_id) { where(user_id => :users) }
+
+  # serialize :users, Array
 end
