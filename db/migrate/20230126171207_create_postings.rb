@@ -4,7 +4,7 @@ class CreatePostings < ActiveRecord::Migration[7.0]
       t.references :user, null: false, foreign_key: true
       t.string :title
       t.text :description
-      t.text :categories
+      t.string :categories, array: true, default: []
       t.float :price
       t.string :price_unit
       t.string :posting_type 
