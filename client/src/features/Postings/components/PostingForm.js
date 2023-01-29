@@ -1,6 +1,9 @@
 import React, { useState } from "react";
+import { useSystemMode } from "../../../SystemModeContext";
 
 export default function PostingForm({ posting, onSubmit, onCancel }) {
+  const systemMode = useSystemMode()
+
   const [currentPosting, setCurrentPosting] = useState(() => {
     if (posting) {
       return {
@@ -104,7 +107,7 @@ export default function PostingForm({ posting, onSubmit, onCancel }) {
           <option value="daily">Daily</option>
         </select>
         <div className="form-action-buttons">
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Submit" className={`colors-${systemMode.toLowerCase()}`}/>
           <button className="cancel" onClick={onCancel}>
             Cancel
           </button>
