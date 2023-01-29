@@ -4,10 +4,13 @@ import { useSystemMode } from "../../SystemModeContext";
 import MessageList from "./components/MessageList";
 import "./assets/conversations.css"
 import "./assets/messages.css"
+import MessageBox from "./components/MessageBox";
 
 export default function ConversationsIndex({ user }) {
   const [conversations, setConversations] = useState([])
   const [currentConversation, setCurrentConversation] = useState({})
+  const [currentMessage, setCurrentMessage] = useState("")
+
   const systemMode = useSystemMode()
 
   useEffect(() => {
@@ -36,9 +39,7 @@ export default function ConversationsIndex({ user }) {
           </div>
           <div className="message__element">
             <MessageList user={user} messages={currentConversation.messages} />
-            <div className="message__element__chatbox">
-              <p>This is the chatbox</p>
-            </div>
+            <MessageBox message={currentMessage}/>
           </div>
         </div>
       </div>
