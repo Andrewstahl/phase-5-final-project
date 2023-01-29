@@ -23,7 +23,6 @@ class PostingsController < ApplicationController
       @posting.user = @user
       # We initialize the categories as an array, so we need
       # to resave the categories from the parameters
-      @posting.update(categories: params[:categories])
       @posting.save!
       render json: @posting, status: :created
     else
