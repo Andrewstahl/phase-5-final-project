@@ -14,14 +14,76 @@ div.message {
   border-radius: 10%;
   width:fit-content;
   height: fit-content;
-  max-width: 30%;
+  max-width: 40%;
+  display: flexbox;
 }
 
 div.message-sender {
   color: white;
+  display: inline-block;
   text-align: right;
+  margin-left: 50%;
 }
 
 div.message-receiver {
   text-align: left;
+  float: left;
+}
+
+.message__element {
+  border: 5px solid green;
+  width: 65%;
+  height: 98%;
+}
+
+.message__element__messages__list {
+  border: 3px solid purple;
+  height: 150%;
+  display: flex;
+  flex-direction: column;
+} 
+
+.message__element__chatbox {
+  border: 3px solid grey;
+}
+
+.message__element__messages__list {
+  height: 90%;
+  min-height: 80%;
+}
+
+.message__element__chatbox {
+  height: 9%;
+  max-height: 19%;
+  bottom: 0px;
+  display: flex;
+}
+
+span.message__time {
+  font-size: small;
+  text-align: right;
+}
+
+form.message__box__form {
+  background-color: transparent;
+  height: 95%;
+  width: 100%;
+  display: inline-block;
+  /* flex-direction: row; */
+}
+
+textarea.message__element__box {
+  width: 99%;
+  height: 98%;
+  float: left;
+  margin: 0px;
+  resize: none;
+}
+
+input.message__box__submit {
+  width: fit-content;
+  height: 100%;
+  margin: 0px
+  /* width: 100%; */
+
 }
