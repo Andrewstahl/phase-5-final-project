@@ -5,7 +5,7 @@ class ConversationsController < ApplicationController
   def index
     @user = get_user
     if @user
-      @conversations = Conversation.user_messages(@user.id)
+      @conversations = Conversation.user_messages(@user.username)
     else
       @conversations = Conversation.all
     end 
@@ -20,7 +20,7 @@ class ConversationsController < ApplicationController
   # POST /conversations
   def create
     @conversation = Conversation.new(conversation_params)
-    @conversation.update(user_ids: params[:user_ids])
+    @conversation.update(users: params[:users])
     if @conversation.save
       render json: @conversation, status: :created, location: @conversation
     else
@@ -55,6 +55,6 @@ class ConversationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def conversation_params
-      params.require(:conversation).permit(:user_ids)
+      params.require(:conversation).permit(:users)
     end
 end
