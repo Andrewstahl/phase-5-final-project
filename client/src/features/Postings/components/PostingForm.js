@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 
 export default function PostingForm({ posting, onSubmit, onCancel }) {
   const [currentPosting, setCurrentPosting] = useState(() => {
@@ -41,7 +41,7 @@ export default function PostingForm({ posting, onSubmit, onCancel }) {
 
   return (
     <>
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form className="posting__form" onSubmit={(e) => handleSubmit(e)}>
         <label htmlFor="title">Title</label>
         <input
           id="title"
