@@ -15,12 +15,16 @@
 }
 
 .posting-div {
-  border-style: solid;
-  border-color: var(--purple-freelancer);
-  margin: 5% 20%;
-  padding: 10px 20px;
+  /* border-style: solid; */
+  /* border-color: var(--purple-freelancer); */
+  margin-top: 20px;
+  /* padding: 10px 20px; */
   text-align: center;
   font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.posting__list__div {
+  padding: 20px;
 }
 
 .posting__header { 
@@ -42,20 +46,11 @@
   margin: 5px 2px;
 }
 
-.colors-freelancer {
-  background-color: var(--purple-freelancer);
-}
-
-.colors-buyer {
-  background-color: var(--green-buyer);
-}
-
-.posting-buttons-div {
-  height: 60%;
+.posting__action__buttons__div {
   margin: auto;
   width: 100%;
   margin-top: 10px;
-  border-top-width: 1px;
+  /* border-top-width: 1px;
   border-top-style: solid;
-  border-top-color: var(--grey);
+  border-top-color: var(--grey); */
 }
