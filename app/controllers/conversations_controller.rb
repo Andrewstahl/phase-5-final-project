@@ -16,8 +16,6 @@ class ConversationsController < ApplicationController
   # POST /conversations
   def create
     @conversation = Conversation.new(conversation_params)
-    @conversation.update(:users, conversation_params[:users])
-
     if @conversation.save
       render json: @conversation, status: :created, location: @conversation
     else
