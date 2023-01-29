@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useSystemMode } from "../../../SystemModeContext";
 
 export default function MessageBox({ message }) {
   const [currentMessage, setCurrentMessage] = useState(message);
+  const systemMode = useSystemMode();
 
   return (
     <div className="message__element__chatbox">
@@ -13,7 +15,12 @@ export default function MessageBox({ message }) {
           onChange={(e) => setCurrentMessage(e.target.value)}
         />
       </form>
-      <input type="submit" value="Send" className="message__box__submit" form="message-box"/>
+      <input
+        type="submit"
+        value="Send"
+        className={`message__box__submit colors-${systemMode.toLowerCase()}`}
+        form="message-box"
+      />
     </div>
   );
 }
