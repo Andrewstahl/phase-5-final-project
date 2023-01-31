@@ -22,7 +22,7 @@ div.message-sender {
   color: white;
   display: inline-block;
   text-align: right;
-  margin-left: 50%;
+  margin-left: 75%;
 }
 
 div.message-receiver {
@@ -31,7 +31,7 @@ div.message-receiver {
 }
 
 .message__element {
-  border: 5px solid green;
+  border: 5px solid rgb(0, 247, 0);
   width: 65%;
   height: 98%;
 }
@@ -41,6 +41,7 @@ div.message-receiver {
   height: 150%;
   display: flex;
   flex-direction: column;
+  overflow-y: scroll;
 } 
 
 .message__element__chatbox {
@@ -73,8 +74,8 @@ form.message__box__form {
 }
 
 textarea.message__element__box {
-  width: 99%;
-  height: 98%;
+  width: 100%;
+  height: 99%;
   float: left;
   margin: 0px;
   resize: none;
@@ -85,5 +86,8 @@ input.message__box__submit {
   height: 100%;
   margin: 0px
   /* width: 100%; */
+}
 
+p.message__body {
+  margin: 0px
 }
