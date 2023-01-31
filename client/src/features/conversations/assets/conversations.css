@@ -37,5 +37,40 @@
 }
 
 div.conversation__header__details {
-  display: flex;
+  /* display: flex; */
+  /* display: flex;
+  flex-direction: row; */
+  /* border: 1px solid black; */
+  /* vertical-align: top; */
+}
+
+.conversation__header {
+  display: inline-block;
+  width: 49%;
+  height: fit-content;
+  /* border: 1px solid blue; */
+}
+
+.conversation-user {
+  /* float: left; */
+  /* display: inline-block; */
+  font-weight: bold;
+  text-align: left;
+}
+.conversation-time {
+  /* display: inline-block; */
+  /* float: right; */
+  text-align: right;
+  font-style: italic;
+}
+
+div.conversation__last_message_details {
+  text-align: left;
+}
+
+div.conversation__single__element {
+  padding: 5px;
+  margin: 5px;
+  border-color: var(--grey);
+  border-style: solid;
 }
