@@ -12,7 +12,7 @@ function NavBar({ onLogoutClick, siteMode, onSiteToggle }) {
     width: "100%",
     height: "10%",
     padding: ".5em",
-    fontSize: "25px",
+    fontSize: "2vw",
     textDecoration: "none",
     color: "white",
     fontWeight: "bold",
