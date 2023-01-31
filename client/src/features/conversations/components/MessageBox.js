@@ -1,13 +1,20 @@
 import React, { useState } from "react";
 import { useSystemMode } from "../../../SystemModeContext";
 
-export default function MessageBox({ message }) {
+export default function MessageBox({ message, onSubmit }) {
   const [currentMessage, setCurrentMessage] = useState(message);
   const systemMode = useSystemMode();
 
   return (
     <div className="message__element__chatbox">
-      <form id="message-box" className="message__box__form">
+      <form
+        id="message-box"
+        className="message__box__form"
+        onSubmit={(e) => {
+          e.preventDefault();
+          onSubmit(currentMessage);
+        }}
+      >
         <textarea
           className="message__element__box"
           placeholder="Type your message here..."
