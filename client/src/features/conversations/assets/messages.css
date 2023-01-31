@@ -42,6 +42,7 @@ div.message-receiver {
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
+  overflow: overlay;
 } 
 
 .message__element__chatbox {
