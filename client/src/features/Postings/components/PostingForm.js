@@ -5,7 +5,7 @@ import Error from "../../../components/Error";
 
 export default function PostingForm({ posting, onSubmit, onCancel, errors }) {
   const systemMode = useSystemMode();
-
+ 
   const [currentPosting, setCurrentPosting] = useState(() => {
     if (posting) {
       return {
@@ -48,7 +48,6 @@ export default function PostingForm({ posting, onSubmit, onCancel, errors }) {
   }
 
   function handleCategoryUpdate(e) {
-    // console.log(voca.titleCase(e.target.value.replace("-", " ")));
     const category = voca.titleCase(e.target.value.replace("-", " "));
     const index = categories.indexOf(category);
     if (index > -1) {
@@ -127,7 +126,6 @@ export default function PostingForm({ posting, onSubmit, onCancel, errors }) {
             <option value="web-development">Web Development</option>
             <option value="writing">Writing</option>
           </select>
-          {/* This button will allow you to remove all attached categories */}
           <button
             className="posting-form__select-dropdown-button clear"
             onClick={(e) => {
