@@ -1,14 +1,10 @@
 import React, { useState } from "react";
 import Error from "../../../components/Error";
-import { useSystemMode } from "../../../SystemModeContext";
 
 function LoginForm({ onLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
-
-  const systemMode = useSystemMode()
-  console.log(systemMode)
 
   function handleSubmit(e) {
     e.preventDefault();
