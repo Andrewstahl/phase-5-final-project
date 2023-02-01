@@ -57,3 +57,28 @@
   border-top-style: solid;
   border-top-color: var(--grey); */
 }
+
+.posting-form__categories-paragraph {
+  margin-bottom: 20px;
+  margin-top: 0px;
+  font-style: italic;
+}
+
+.posting-form__select-dropdown-div {
+  /* display: inline-block; */
+}
+
+.posting-form__select-dropdown-field {
+  display: inline-block;
+  width: 95%;
+}
+
+.posting-form__select-dropdown-button {
+  width: 5%;
+  font-size: 15px;
+  color: white;
+  font-weight: bold;
+  padding: .5em;
+  text-align: center;
+  /* border-radius: 10%; */
+}
