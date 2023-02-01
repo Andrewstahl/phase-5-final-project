@@ -13,10 +13,12 @@ export default function Conversation({ user, conversation, onSelect }) {
     lastMessageTime = lastMessage.updated_at;
     lastMessageBody = lastMessage.body;
 
-    if (lastMessageBody.length > 80) {
-      lastMessageBody = lastMessageBody.slice(0, 77) + "...";
-    }
-
+    if (lastMessageBody !== null) {
+      if (lastMessageBody.length > 80) {
+        lastMessageBody = lastMessageBody.slice(0, 77) + "...";
+      }
+    } 
+  
     if (
       moment(lastMessageTime).format("M/D/YY") === moment().format("M/D/YY")
     ) {
