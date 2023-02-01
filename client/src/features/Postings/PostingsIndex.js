@@ -9,12 +9,14 @@ export default function PostingsIndex({ user }) {
   const [currentPosting, setCurrentPosting] = useState(null);
   const [fetchMethod, setFetchMethod] = useState("");
   const [postings, setPostings] = useState(user.postings);
+  const [errors, setErrors] = useState([]);
 
   const systemMode = useSystemMode();
 
   function togglePostingForm() {
     setShowPostingForm(!showPostingForm);
     setCurrentPosting(null);
+    setErrors([])
     setFetchMethod("POST");
   }
 
@@ -30,49 +32,63 @@ export default function PostingsIndex({ user }) {
   }
 
   function handleFormSubmission(posting) {
-    // First add in the path ending if we're editing
-    // a posting
-    let fetchPathEnding;
+    setErrors([]);
+    let fetchPathEnding = "";
 
-    if (fetchMethod === "POST") {
+    if (fetchMethod === "PATCH") {
       fetchPathEnding = `/${currentPosting.id}`;
     }
 
-    console.log({
-      ...posting,
-      user: user,
-      posting_type: systemMode,
+    fetch(`/postings${fetchPathEnding}`, {
+      method: fetchMethod,
+      headers: {
+        "CONTENT-TYPE": "application/json",
+      },
+      body: JSON.stringify({
+        ...posting,
+        user_id: user.id,
+        posting_type: systemMode,
+      }),
+    }).then((r) => {
+      if (r.ok) {
+        r.json().then((data) => {
+          if (fetchMethod === "POST") {
+            setPostings([...postings, data]);
+          } else if (fetchMethod === "PATCH") {
+            setPostings([
+              ...postings.filter(
+                (postingItem) => postingItem.id !== posting.id
+              ),
+              posting,
+            ]);
+          }
+          togglePostingForm();
+        });
+      } else {
+        r.json().then((err) => setErrors(err.errors));
+      }
     });
-
-    // fetch(`/postings${fetchPathEnding}`, {
-    //   method: fetchMethod,
-    //   headers: {
-    //     "CONTENT-TYPE": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     ...posting,
-    //     user: user,
-    //     posting_type: systemMode,
-    //   }),
-    // }).then((r) => {
-    //   if (r.ok) {
-    //     r.json().then((data) => {
-    //       if (fetchMethod === "POST") {
-    //         setPostings(...postings, data);
-    //       } else if (fetchMethod === "PATCH") {
-    //         setPostings(
-    //           postings.filter((postingItem) => postingItem.id !== posting.id)
-    //         );
-    //       }
-    //     });
-    //   }
-    // });
   }
+
+  function handleDelete(deletedPosting) {
+    fetch(`/postings/${deletedPosting.id}`, {
+      method: "DELETE",
+      headers: {
+        "CONTENT-TYPE": "application/json"
+      }
+    }).then((r) => {
+      if (r.ok) {
+        setPostings(postings.filter((posting) => posting.id !== deletedPosting.id))
+      }
+    })
+  }
+
+  const filteredPostsBySiteMode = postings.filter((posting) => posting.posting_type === systemMode)
 
   return (
     <>
-      <h1 className="page-header">Postings</h1>
-      <div className="posting-form-button-div">
+      <h1 className="page-header">Your {systemMode} Postings</h1>
+      <div className="posting-form-button__div">
         <button
           className={`posting-form-button colors-${systemMode.toLowerCase()}`}
           onClick={togglePostingForm}
@@ -81,9 +97,15 @@ export default function PostingsIndex({ user }) {
         </button>
       </div>
       {showPostingForm ? (
-        <PostingForm posting={currentPosting} onCancel={handleCancel} onSubmit={handleFormSubmission}/>
+        <PostingForm
+          posting={currentPosting}
+          onCancel={handleCancel}
+          onSubmit={handleFormSubmission}
+          onDelete={handleDelete}
+          errors={errors}
+        />
       ) : null}
-      <PostingList user={user} postings={postings} onEdit={handleEditClick} />
+      <PostingList postings={filteredPostsBySiteMode} onEdit={handleEditClick} onDelete={handleDelete} />
     </>
   );
 }
