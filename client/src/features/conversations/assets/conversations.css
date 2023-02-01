@@ -1,36 +1,43 @@
 .conversations__div {
-  border: 5px solid orange;
   height: 75vh;
   max-height: 80vh;
 }
 
-.conversation__parent__div {
+.conversation__section-div {
   border: 5px solid black;
   height: 100%;
   width: 80%;
   margin: auto;
   text-align: center;
+  padding: 0px
 }
 
-.conversation__element, .message__element {
+.border-colors-freelancer {
+  border-color: var(--freelancer-purple);
+}
+
+.border-colors-buyer {
+  border-color: var(--buyer-green);
+}
+
+.conversation__element, .message__section-div {
   height: 98%;
   float: left;
 }
 
 .conversation__element {
-  border: 5px solid red;
+  border: 3px solid var(--grey);
   width: 30%;
   float: left;
 }
 
-.conversation__element__action__buttons {
-  border: 5px solid powderblue;
+.conversation-modal__action-buttons-div {
   padding: 5px;
   margin: 0px;
   vertical-align: middle;
 }
 
-.conversation-action-button {
+.conversation-modal__action-button {
   color: white;
   font-weight: bold;
   font-size: large;
@@ -71,6 +78,14 @@ div.conversation__last_message_details {
 div.conversation__single__element {
   padding: 5px;
   margin: 5px;
+  /* border: 3px 0px; */
+  border-width: 2px 0px;
+  background-color: white;
   border-color: var(--grey);
   border-style: solid;
+}
+
+.new-conversation-modal-submit {
+  max-width: fit-content;
+  text-align: center;
 }
