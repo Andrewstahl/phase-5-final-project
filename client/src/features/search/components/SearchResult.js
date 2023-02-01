@@ -1,5 +1,4 @@
 import React from "react";
-import SearchResultList from "./SearchResultList";
 
 export default function SearchResult({ result }) {
   let freelancerCategories = [];
