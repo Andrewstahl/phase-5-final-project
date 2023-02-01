@@ -32,7 +32,7 @@ label {
   font-weight: bolder;
 }
 
-form.posting__form,
+form.posting-form__form,
 .form-formatting {
   background-color: white;
   padding: 25px;
@@ -41,7 +41,7 @@ form.posting__form,
   box-shadow: 5px 10px 20px 0px rgba(0, 0, 0, 0.19);
 }
 
-form.posting__form,
+form.posting-form__form,
 .form-formatting,
 div.login__signup__switch__container {
   max-width: 60%;
@@ -81,7 +81,7 @@ button.login__signup__switch__button {
   cursor: pointer;
 }
 
-div.form-action-buttons {
+div.posting-form__action-buttons-div {
   margin: auto;
   display: inline-flex;
   width: 100%;
@@ -89,7 +89,7 @@ div.form-action-buttons {
 
 button.cancel,
 button.delete,
-button.posting__button-edit {
+button.posting__edit-button {
   color: white;
   font-weight: bold;
   font-size: 20px;

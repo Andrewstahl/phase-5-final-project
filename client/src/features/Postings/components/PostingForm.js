@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { useSystemMode } from "../../../SystemModeContext";
 import voca from "voca";
+import Error from "../../../components/Error";
 
-export default function PostingForm({ posting, onSubmit, onCancel }) {
+export default function PostingForm({ posting, onSubmit, onCancel, errors }) {
   const systemMode = useSystemMode();
 
   const [currentPosting, setCurrentPosting] = useState(() => {
     if (posting) {
       return {
+        id: posting.id,
         title: posting.title,
         description: posting.description,
         price: parseInt(posting.price),
@@ -62,13 +64,21 @@ export default function PostingForm({ posting, onSubmit, onCancel }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    onSubmit({ ...currentPosting, categories: [...categories] });
+    onSubmit({
+      ...currentPosting,
+      price_unit: voca.titleCase(currentPosting.price_unit),
+      categories: [...categories],
+    });
   }
 
   return (
-    <>
-      <form className="posting__form" onSubmit={(e) => handleSubmit(e)}>
-        <label htmlFor="title">Title</label>
+    <div className="posting-form__div">
+      <form className="posting-form__form" onSubmit={(e) => handleSubmit(e)}>
+        <label htmlFor="title">
+          {systemMode === "Freelancer"
+            ? "What Are You Offering?"
+            : "Where Do You Need Assistance?"}
+        </label>
         <input
           id="title"
           name="title"
@@ -77,7 +87,11 @@ export default function PostingForm({ posting, onSubmit, onCancel }) {
           onChange={(e) => handleChange(e)}
           placeholder="Enter your title here"
         />
-        <label htmlFor="description">Description</label>
+        <label htmlFor="description">
+          {systemMode === "Freelancer"
+            ? "Describe Your Offering"
+            : "Describe Your Need"}
+        </label>
         <textarea
           id="description"
           name="description"
@@ -85,7 +99,7 @@ export default function PostingForm({ posting, onSubmit, onCancel }) {
           onChange={(e) => handleChange(e)}
           placeholder="Enter your description here"
         />
-        <label htmlFor="categories">Categories</label>
+        <label htmlFor="categories">Project Categories</label>
         <div className="posting-form__select-dropdown-div">
           <select
             id="categories"
@@ -137,7 +151,7 @@ export default function PostingForm({ posting, onSubmit, onCancel }) {
           placeholder="Please enter your price"
           min="0"
         />
-        <label htmlFor="price-unit">Price Unit</label>
+        <label htmlFor="price-unit">Price Category</label>
         <select
           id="price-unit"
           name="price-unit"
@@ -148,7 +162,7 @@ export default function PostingForm({ posting, onSubmit, onCancel }) {
           <option value="hourly">Hourly</option>
           <option value="daily">Daily</option>
         </select>
-        <div className="form-action-buttons">
+        <div className="posting-form__action-buttons-div">
           <input
             type="submit"
             value="Submit"
@@ -158,7 +172,10 @@ export default function PostingForm({ posting, onSubmit, onCancel }) {
             Cancel
           </button>
         </div>
+        {errors.map((error) => {
+          return <Error key={error} error={error} />;
+        })}
       </form>
-    </>
+    </div>
   );
 }

@@ -1,12 +1,12 @@
 import React from "react";
 import { useSystemMode } from "../../../SystemModeContext";
 
-export default function Posting({ posting, onEdit }) {
+export default function Posting({ posting, onEdit, onDelete }) {
   const systemMode = useSystemMode();
 
   return (
     <>
-      <div className="posting-div form-formatting">
+      <div className="posting__div form-formatting">
         <h2 className="posting__header">{posting.title}</h2>
         <p className="posting__description">
           {/* Only show the first 30 words of the description if there
@@ -25,7 +25,9 @@ export default function Posting({ posting, onEdit }) {
             return (
               <span
                 key={category.index}
-                className={`posting__category colors-${posting.posting_type.toLowerCase()}`}
+                className={`posting__category colors-${
+                  posting.posting_type ? posting.posting_type.toLowerCase() : ""
+                }`}
               >
                 {category}
               </span>
@@ -33,14 +35,14 @@ export default function Posting({ posting, onEdit }) {
           })}
         </div>
         <hr></hr>
-        <div className="posting__action__buttons__div">
+        <div className="posting__action-buttons-div">
           <button
-            className={`posting__button-edit colors-${systemMode.toLowerCase()}`}
+            className={`posting__edit-button colors-${systemMode.toLowerCase()}`}
             onClick={() => onEdit(posting)}
           >
             Edit
           </button>
-          <button className="delete">Delete</button>
+          <button className="posting__delete-button delete" onClick={() => onDelete(posting)}>Delete</button>
         </div>
       </div>
     </>

@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-.posting-form-button-div {
+.posting-form-button__div {
   text-align: center;
 }
 
@@ -14,7 +14,7 @@
   font-weight: bold
 }
 
-.posting-div {
+.posting__div {
   margin-top: 20px;
   margin-right: 20px;
   width: 500px;
@@ -24,9 +24,9 @@
   display: inline-block;
 }
 
-.posting__list__div {
+.posting-list__div {
   padding: 20px;
-  text-align: center;
+  text-align: center; 
 }
 
 .posting__header { 
@@ -49,7 +49,7 @@
   margin: 5px 2px;
 }
 
-.posting__action__buttons__div {
+.posting__action-buttons-div {
   margin: auto;
   width: 100%;
   margin-top: 10px;
