@@ -8,7 +8,7 @@ class Posting < ApplicationRecord
   validates :price, presence: true
   validates :price_unit, presence: true
   validates :posting_type, presence: true
-
   validates :posting_type, inclusion: { in: ["Freelancer", "Buyer"] }
+  validates :categories, presence: true
 
 end
