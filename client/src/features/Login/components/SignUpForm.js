@@ -34,7 +34,7 @@ function SignUpForm({ onLogin }) {
       <div>
         <h1 className="login-page-header">Sign Up Now</h1>
       </div>
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form className="form-formatting" onSubmit={(e) => handleSubmit(e)}>
         <div>
           <label htmlFor="username">Username</label>
           <input
@@ -69,7 +69,7 @@ function SignUpForm({ onLogin }) {
           />
         </div>
         <div>
-          <input type="submit" value="Submit" />
+          <input className="login-form__submit-button" type="submit" value="Submit" />
         </div>
         <div>
           {errors.map((error) => (

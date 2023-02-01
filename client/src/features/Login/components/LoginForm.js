@@ -1,10 +1,14 @@
 import React, { useState } from "react";
 import Error from "../../../components/Error";
+import { useSystemMode } from "../../../SystemModeContext";
 
 function LoginForm({ onLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
+
+  const systemMode = useSystemMode()
+  console.log(systemMode)
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -32,7 +36,7 @@ function LoginForm({ onLogin }) {
       <div>
         <h1 className="login-page-header">Login Now</h1>
       </div>
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form className="form-formatting" onSubmit={(e) => handleSubmit(e)}>
         <div>
           <label htmlFor="username">Username</label>
           <input
@@ -55,8 +59,8 @@ function LoginForm({ onLogin }) {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <div className="form__submit__div">
-          <input type="submit" value="Submit" />
+        <div className="login-form__submit-div">
+          <input className="login-form__submit-button" type="submit" value="Submit" />
         </div>
         <div>
           {errors.map((error) => (
