@@ -6,13 +6,14 @@ export default function MessageBox({ message, onSubmit }) {
   const systemMode = useSystemMode();
 
   return (
-    <div className="message__element__chatbox">
+    <div className="message-chatbox__div">
       <form
         id="message-box"
         className="message-chatbox__form"
         onSubmit={(e) => {
           e.preventDefault();
-          onSubmit(currentMessage);
+          onSubmit(currentMessage)
+          setCurrentMessage("");
         }}
       >
         <textarea
