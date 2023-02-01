@@ -11,7 +11,7 @@
   margin-top: 20px;
 }
 
-h2.result__header__text {
+h2.result__header-text {
   margin-bottom: 5px;
   margin-top: 0px
 }
@@ -33,6 +33,6 @@ span {
   padding: 5px;
 }
 
-.result__list__div {
+.search-results-list__div {
   margin-bottom: 100px;
 }
