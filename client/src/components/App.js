@@ -1,11 +1,10 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import NavBar from "./NavBar";
 import Login from "../pages/Login";
 import Postings from "../pages/Postings";
 import Search from "../pages/Search";
 import Conversations from "../pages/Conversations";
-import { useUser, UserProvider, useUserLogout } from "../UserContext";
 import { SystemModeProvider } from "../SystemModeContext";
 
 /**
@@ -45,11 +44,23 @@ import { SystemModeProvider } from "../SystemModeContext";
  *
  */
 
+const UserContext = React.createContext();
+
+export function useUser() {
+  return useContext(UserContext);
+}
+
 function App() {
-  // const [user, setUser] = useState(null);
   const [siteMode, setSiteMode] = useState("freelancing");
-  const user = useUser()
-  const userLogout = useUserLogout()
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    fetch("/me").then((r) => {
+      if (r.ok) {
+        r.json().then((user) => setUser(user));
+      }
+    });
+  }, []);
 
   function handleSiteToggle() {
     if (siteMode === "Freelancing") {
@@ -59,17 +70,30 @@ function App() {
     }
   }
 
-  if (!user) return <Login />;
+  function handleLogout() {
+    fetch("/logout", {
+      method: "DELETE",
+    }).then((r) => {
+      if (r.ok) {
+        setUser(null);
+      }
+    });
+  }
+
+  if (!user) return <Login onLogin={setUser} />;
 
   return (
     <>
-      <UserProvider>
+      <UserContext.Provider value={user}>
         <SystemModeProvider>
-          <NavBar onLogoutClick={userLogout} onSiteToggle={handleSiteToggle} />
+          <NavBar onLogoutClick={handleLogout} onSiteToggle={handleSiteToggle} />
           <div className="App">
             <Routes>
-              {/* <Route exact path={`/postings/${siteMode}`} element={<Postings user={user} />} /> */}
-              <Route exact path="/postings" element={<Postings user={user} />} />
+              <Route
+                exact
+                path="/postings"
+                element={<Postings user={user} />}
+              />
               <Route exact path="/search" element={<Search user={user} />} />
               <Route
                 exact
@@ -81,7 +105,7 @@ function App() {
             </Routes>
           </div>
         </SystemModeProvider>
-      </UserProvider>
+      </UserContext.Provider>
     </>
   );
 }
