@@ -5,15 +5,20 @@ import MessageList from "./components/MessageList";
 import "./assets/conversations.css";
 import "./assets/messages.css";
 import MessageBox from "./components/MessageBox";
+import { useUser } from "../../components/App";
+import toast, { Toaster } from "react-hot-toast";
 
-export default function ConversationsIndex({ user }) {
+export default function ConversationsIndex() {
   const [conversations, setConversations] = useState([]);
+  const [currentMessage, setCurrentMessage] = useState("");
   const [currentMessages, setCurrentMessages] = useState([]);
   const [currentConversation, setCurrentConversation] = useState({});
-  const [currentMessage, setCurrentMessage] = useState("");
-  const [fetchMethod, setFetchMethod] = useState("")
+  const [fetchMethod, setFetchMethod] = useState("POST");
 
+  const user = useUser();
   const systemMode = useSystemMode();
+
+  const failureNotify = () => toast.error("Message Not Sent! Please include a message before sending.");
 
   useEffect(() => {
     fetch("/conversations").then((r) => {
@@ -31,42 +36,66 @@ export default function ConversationsIndex({ user }) {
     setCurrentMessages(conversation.messages);
   }
 
-  function handleEdit(message) {
-    fetch("/messages", {
-      method: "PATCH",
+  function handleSubmit(updatedMessage) {
+    setCurrentMessage("")
+
+    let fetchPathEnding = "";
+
+    if (fetchMethod === "PATCH") {
+      fetchPathEnding = `/${currentMessage.id}`;
+    }
+
+    fetch(`/messages${fetchPathEnding}`, {
+      method: fetchMethod,
       headers: {
         "CONTENT-TYPE": "application/json",
       },
       body: JSON.stringify({
-        body: message,
+        body: updatedMessage,
+        sender: user.username,
         conversation_id: currentConversation.id,
-        sender: user.username
       }),
-    })
-    .then((r) => {
+    }).then((r) => {
       if (r.ok) {
-        r.json().then((messageResponse) => setCurrentMessages([...currentMessages, messageResponse]))
+        r.json().then((data) => {
+          if (fetchMethod === "POST") {
+            setCurrentMessages([...currentMessages, data]);
+          } else if (fetchMethod === "PATCH") {
+            setCurrentMessages([
+              ...currentMessages.map((message) => {
+                if (message.id === updatedMessage.id) {
+                  return updatedMessage;
+                }
+                return message;
+              }),
+            ]);
+          }
+        });
       } else {
-        r.json().then((errors) => console.error(errors))
+        failureNotify();
       }
-    })
+    });
   }
 
-  function handleSubmit(message) {
-    fetch("/messages", {
-      headers: "POST",
-      body: {
-        
+  function handleDelete(deletedMessage) {
+    fetch(`/postings/${deletedMessage.id}`, {
+      method: "DELETE",
+      headers: {
+        "CONTENT-TYPE": "application/json",
+      },
+    }).then((r) => {
+      if (r.ok) {
+        setCurrentMessages(
+          currentMessages.filter((message) => message.id !== deletedMessage.id)
+        );
       }
-    })
-    
-    console.log(message)
-    // setCurrentMessages([...currentMessages, message]);
+    });
   }
 
   return (
     <>
       <h1 className="page-header">Your Conversations</h1>
+      <Toaster />
       <div className="conversations__div">
         <div className="conversation__parent__div">
           <div className="conversation__element">
