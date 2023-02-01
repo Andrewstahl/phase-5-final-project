@@ -102,6 +102,7 @@ button.posting__button-edit {
 
 button.cancel,
 button.delete,
+button.clear,
 input.delete-account {
   background-color: var(--label-red);
 }
