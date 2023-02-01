@@ -2,14 +2,11 @@ import React, { useEffect, useState } from "react";
 import SearchFilter from "./components/SearchFilter";
 import SearchResultList from "./components/SearchResultList";
 import "./assets/search.css";
-import { useUsers } from "../../UserContext";
 
 export default function SearchIndex({ user }) {
   const [results, setResults] = useState([]);
   const [search, setSearch] = useState("");
 
-  setResults(useUsers())
-  
   useEffect(() => {
     fetch("/users").then((r) => {
       if (r.ok) {
