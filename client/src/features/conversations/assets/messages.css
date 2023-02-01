@@ -15,14 +15,15 @@ div.message {
   width:fit-content;
   height: fit-content;
   max-width: 40%;
-  display: flexbox;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
 }
 
 div.message-sender {
   color: white;
-  display: inline-block;
   text-align: right;
-  margin-left: 75%;
+  float: right;
 }
 
 div.message-receiver {
@@ -43,6 +44,7 @@ div.message-receiver {
   flex-direction: column;
   overflow-y: scroll;
   overflow: overlay;
+  justify-content: end;
 } 
 
 .message__element__chatbox {
