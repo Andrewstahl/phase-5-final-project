@@ -37,28 +37,28 @@ div.message-receiver {
   height: 98%;
 }
 
-.message__element__messages__list {
+.message-list__div {
   border: 3px solid purple;
   height: 150%;
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
-  overflow: overlay;
-  justify-content: end;
+  /* overflow: overlay; */
+  /* justify-content: end; */
 } 
 
-.message__element__chatbox {
+.message-chatbox__div {
   border: 3px solid grey;
 }
 
-.message__element__messages__list {
+.message-list__div {
   height: 90%;
   min-height: 80%;
 }
 
-.message__element__chatbox {
+.message-chatbox__div {
   height: 9%;
-  max-height: 19%;
+  max-height: 100%;
   bottom: 0px;
   display: flex;
 }
@@ -70,7 +70,7 @@ span.message__time {
 
 form.message-chatbox__form {
   background-color: transparent;
-  height: 95%;
+  height: 100%;
   width: 100%;
   display: inline-block;
   /* flex-direction: row; */
@@ -93,4 +93,12 @@ input.message-chatbox__submit-button {
 
 p.message__body {
   margin: 0px
+}
+
+div.actions {
+  display: none;
+}
+
+div.actions:hover {
+  display: block;
 }
