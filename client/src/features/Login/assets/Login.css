@@ -31,3 +31,7 @@ h3 span {
   background: var(--label-body);
   padding: 0 10px;
 }
+
+.login-form__submit-button {
+  background: var(--purple-freelancer);
+}
