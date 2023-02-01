@@ -68,7 +68,7 @@ span.message__time {
   text-align: right;
 }
 
-form.message__box__form {
+form.message-chatbox__form {
   background-color: transparent;
   height: 95%;
   width: 100%;
@@ -76,7 +76,7 @@ form.message__box__form {
   /* flex-direction: row; */
 }
 
-textarea.message__element__box {
+textarea.message-chatbox__input {
   width: 100%;
   height: 99%;
   float: left;
@@ -84,7 +84,7 @@ textarea.message__element__box {
   resize: none;
 }
 
-input.message__box__submit {
+input.message-chatbox__submit-button {
   width: fit-content;
   height: 100%;
   margin: 0px

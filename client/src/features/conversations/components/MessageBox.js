@@ -9,14 +9,14 @@ export default function MessageBox({ message, onSubmit }) {
     <div className="message__element__chatbox">
       <form
         id="message-box"
-        className="message__box__form"
+        className="message-chatbox__form"
         onSubmit={(e) => {
           e.preventDefault();
           onSubmit(currentMessage);
         }}
       >
         <textarea
-          className="message__element__box"
+          className="message-chatbox__input"
           placeholder="Type your message here..."
           value={currentMessage}
           onChange={(e) => setCurrentMessage(e.target.value)}
@@ -25,7 +25,7 @@ export default function MessageBox({ message, onSubmit }) {
       <input
         type="submit"
         value="Send"
-        className={`message__box__submit colors-${systemMode.toLowerCase()}`}
+        className={`message-chatbox__submit-button colors-${systemMode.toLowerCase()}`}
         form="message-box"
       />
     </div>
