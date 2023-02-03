@@ -33,13 +33,40 @@ button.system-toggle-button {
 }
 
 button.logout-button {
-  right: 5px;
+  right: 1vw;
+  position: fixed;
 }
 
 button.system-toggle-button {
-  left: 5px;
+  left: 1vw;
+  position: fixed;
+}
+
+.navbar-colors-freelancer {
+  color: var(--purple-freelancer);
+  border-color: var(--purple-freelancer);
+}
+
+.navbar-colors-freelancer:hover {
+  background-color: var(--purple-freelancer);
+  color: white;
+  border-color: var(--purple-freelancer);
+}
+
+.navbar-colors-buyer {
+  color: var(--green-buyer);
+  border-color: var(--green-buyer);
+}
+
+.navbar-colors-buyer:hover {
+  background-color: var(--green-buyer);
+  color: white;
+  border-color: var(--green-buyer);
 }
 
 /* div.navbar-div {
-
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  z-index:2;
 } */
