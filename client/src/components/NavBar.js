@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-// import "../assets/navbar.css"
+import "../assets/navbar.css"
 import "../assets/index.css"
 import { useSystemMode, useSystemModeUpdate } from "../SystemModeContext";
 
@@ -13,6 +13,7 @@ function NavBar({ onLogoutClick, siteMode, onSiteToggle }) {
     height: "10%",
     padding: ".5em",
     fontSize: "2vw",
+    minimumFontSize: ".5vw",
     textDecoration: "none",
     color: "white",
     fontWeight: "bold",
@@ -28,10 +29,10 @@ function NavBar({ onLogoutClick, siteMode, onSiteToggle }) {
 
   const navLinkStyles = {
     display: "flex",
-    margin: "10px 5px",
+    margin: "50px 5px",
     borderTop: "10px white",
     // borderBottom: "1px solid purple",
-    padding: "0px 300px",
+    padding: "0px 10vw",
   };
 
   return (
@@ -74,12 +75,14 @@ function NavBar({ onLogoutClick, siteMode, onSiteToggle }) {
           Profile
         </NavLink>
       </div>
-      <button className={`system-toggle-button opposite-colors-${systemMode}`} onClick={toggleSystemMode}>
-        Switch to {systemMode === "Freelancer" ? "Buying" : "Freelancing"}
-      </button>
-      <button className={`logout-button opposite-colors-${systemMode}`} onClick={onLogoutClick}>
-        Logout
-      </button>
+      <div className="navbar-action-buttons">
+        <button className={`system-toggle-button opposite-colors-${systemMode}`} onClick={toggleSystemMode}>
+          Switch to {systemMode === "Freelancer" ? "Buying" : "Freelancing"}
+        </button>
+        <button className={`logout-button opposite-colors-${systemMode}`} onClick={onLogoutClick}>
+          Logout
+        </button>
+      </div>
     </div>
   );
 }
