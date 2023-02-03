@@ -22,15 +22,29 @@ export default function MessageList({ user, conversation, messages }) {
     if (messageElements.length === 0) {
       messageElements = (
         <h2 className="message__placeholder__header">
-          Type a Message to Begin Chatting With{" "}
-          {conversation.users
-            .filter((selectedUser) => selectedUser !== user.username)
-            .join(", ")}
+          {
+            Object.keys(conversation).length !== 0
+              ? `Type a Message to Begin Chatting With ${conversation.users
+                  .filter((selectedUser) => selectedUser !== user.username)
+                  .join(", ")}`
+              : "Type a Message to Begin Chatting"
+          }
         </h2>
       );
     }
+
+    console.log(user)
     return (
       <div className="message-list__div">
+        <div className="message-list__header-username">
+          {Object.keys(conversation).length !== 0 ? (
+            <h4>
+              {conversation.users.filter(
+                (selectedUser) => selectedUser !== user.username
+              )}
+            </h4>
+          ) : null}
+        </div>
         {messageElements}
         <div ref={lastMessageRef} />
       </div>
