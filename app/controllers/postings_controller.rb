@@ -76,7 +76,7 @@ class PostingsController < ApplicationController
   end
 
   def render_not_authorized_response
-    render json: { errors: "You cannot make a change to a habit that does not belong to your account" }, status: :unauthorized
+    render json: { errors: "You cannot make a change to a posting that does not belong to your account" }, status: :unauthorized
   end
 
 end
