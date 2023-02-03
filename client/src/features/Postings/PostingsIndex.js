@@ -3,8 +3,12 @@ import PostingList from "./components/PostingList";
 import PostingForm from "./components/PostingForm";
 import { useSystemMode } from "../../SystemModeContext";
 import "./assets/postings.css";
+import { useUser } from "../../components/App";
 
-export default function PostingsIndex({ user }) {
+export default function PostingsIndex() {
+  
+  const user = useUser();
+  
   const [showPostingForm, setShowPostingForm] = useState(false);
   const [currentPosting, setCurrentPosting] = useState(null);
   const [fetchMethod, setFetchMethod] = useState("");
