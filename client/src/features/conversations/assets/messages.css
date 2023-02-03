@@ -104,3 +104,13 @@ div.actions {
 div.actions:hover {
   display: block;
 }
+
+.message-list__header-username {
+  background-color: white;
+  font-size: large;
+  padding: 1%;
+  border: 1px solid var(--grey);
+  border-radius:10%;
+  position: fixed;
+  width: 49%;
+}
