@@ -3,7 +3,7 @@
   --label-red: rgb(184, 77, 77);
   --grey: rgb(154, 154, 154);
   --grey-dark: rgb(120, 120, 120);
-  --green-buyer: rgb(94, 198, 132);
+  --green-buyer: rgb(19 135 86);
   --label-body: rgb(240, 242, 245);
 }
 
@@ -139,6 +139,25 @@ form + form {
   background-color: var(--green-buyer);
 }
 
+.text-colors-freelancer {
+  color: var(--purple-freelancer);
+}
+
+.text-colors-buyer {
+  color: var(--green-buyer);
+}
+
 .page-header {
   text-align: center;
+}
+
+.scroll-to-top__div {
+  position: fixed; 
+  width: 100%;
+  left: 95%;
+  bottom: 60px;
+  height: 20px;
+  font-size: 3rem;
+  z-index: 1;
+  cursor: pointer;
 }
