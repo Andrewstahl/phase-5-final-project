@@ -1,10 +1,11 @@
 import React from "react";
 import Posting from "./Posting";
+import PostingBootstrap from "./PostingBootstrap";
 
 export default function PostingList({ postings, onEdit, onDelete }) {
   const postingElements = postings.map((posting) => {
     return (
-      <Posting
+      <PostingBootstrap
         key={posting.id}
         posting={posting}
         onEdit={onEdit}
