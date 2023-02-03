@@ -6,7 +6,7 @@ export default function PostingBootstrap({ posting, onEdit, onDelete }) {
 
   return (
     <>
-      <div class="card text-center w-50 d-flex justify-content-center">
+      <div class="card text-center w-50 d-flex mx-auto">
         <div
           class={`card-header text-uppercase text-white colors-${systemMode.toLowerCase()}`}
         >
