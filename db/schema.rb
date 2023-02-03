@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_29_180642) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_03_011458) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -58,6 +58,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_29_180642) do
     t.index ["user_id"], name: "index_postings_on_user_id"
   end
 
+  create_table "projects", force: :cascade do |t|
+    t.bigint "freelancer_id", null: false
+    t.bigint "buyer_id", null: false
+    t.bigint "posting_id", null: false
+    t.datetime "due_date"
+    t.float "cost"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["buyer_id"], name: "index_projects_on_buyer_id"
+    t.index ["freelancer_id"], name: "index_projects_on_freelancer_id"
+    t.index ["posting_id"], name: "index_projects_on_posting_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "username"
     t.string "password_digest"
@@ -69,4 +82,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_29_180642) do
   add_foreign_key "freelancers", "users"
   add_foreign_key "messages", "conversations"
   add_foreign_key "postings", "users"
+  add_foreign_key "projects", "buyers"
+  add_foreign_key "projects", "freelancers"
+  add_foreign_key "projects", "postings"
 end
