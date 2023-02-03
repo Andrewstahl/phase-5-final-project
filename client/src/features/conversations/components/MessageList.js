@@ -33,7 +33,6 @@ export default function MessageList({ user, conversation, messages }) {
       );
     }
 
-    console.log(user)
     return (
       <div className="message-list__div">
         <div className="message-list__header-username">
