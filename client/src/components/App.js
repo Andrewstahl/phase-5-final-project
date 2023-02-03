@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Routes, Route } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css'
 import NavBar from "./NavBar";
 import Login from "../pages/Login";
 import Postings from "../pages/Postings";
@@ -8,6 +9,8 @@ import Conversations from "../pages/Conversations";
 import Projects from "../pages/Projects";
 import Profile from "../pages/Profile";
 import { SystemModeProvider } from "../SystemModeContext";
+import NavbarBootstrap from "./NavbarBootstrap";
+import ScrollButton from "./ScrollToTop";
 
 /**
  * App Hierarchy
@@ -88,10 +91,11 @@ function App() {
     <>
       <UserContext.Provider value={user}>
         <SystemModeProvider>
-          <NavBar
+          <NavbarBootstrap />
+          {/* <NavBar
             onLogoutClick={handleLogout}
             onSiteToggle={handleSiteToggle}
-          />
+          /> */}
           <div className="App">
             <Routes>
               <Route
@@ -108,6 +112,7 @@ function App() {
               <Route exact path="/projects" element={<Projects />} />
               <Route exact path="/profile" element={<Profile />} />
             </Routes>
+            <ScrollButton />
           </div>
         </SystemModeProvider>
       </UserContext.Provider>
