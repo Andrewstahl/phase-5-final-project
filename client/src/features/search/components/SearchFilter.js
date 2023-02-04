@@ -6,7 +6,7 @@ export default function SearchFilterBootstrap({ searchValue, onSearch }) {
 
   return (
     <>
-      <div class="w-75 mx-auto">
+      <div class="w-100 mx-auto">
         <div class="form-floating mb-3">
           <input
             type="text"

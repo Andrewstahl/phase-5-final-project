@@ -20,8 +20,6 @@ export default function SearchResultBootstrap({ result }) {
     }
   });
 
-  console.log(result)
-
   return (
     <div class="card mx-auto mb-3 text-center w-45" style={{ width: "18rem" }}>
       <div class={`card-header text-white colors-${systemMode.toLowerCase()}`}>
