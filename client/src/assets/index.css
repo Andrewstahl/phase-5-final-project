@@ -1,8 +1,8 @@
 :root {
   --purple-freelancer: rgb(84, 77, 184);
   --label-red: rgb(184, 77, 77);
-  --grey: rgb(200, 200, 200);
-  --grey-dark: rgb(120, 120, 120);
+  --grey: rgb(235, 233, 233);
+  --grey-dark: rgb(146, 143, 143);
   --green-buyer: rgb(19 135 86);
   --label-body: rgb(240, 242, 245);
 }
@@ -53,8 +53,7 @@ input[type="text"],
 [type="number"],
 select,
 [type="date"],
-[type="datetime-local"],
-textarea {
+[type="datetime-local"] {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -64,9 +63,9 @@ textarea {
   box-sizing: border-box;
 }
 
-textarea {
+/* textarea {
   resize: vertical;
-}
+} */
 
 input[type="submit"],
 button.login__signup__switch__button {
@@ -149,6 +148,8 @@ form + form {
 
 .page-header {
   text-align: center;
+  font-style: italic;
+  margin: 4vh
 }
 
 .color-grey {
