@@ -6,5 +6,5 @@ export default function SearchResultList({ results }) {
     return <SearchResult key={result.id} result={result} />;
   });
 
-  return <div className="search-results-list__div">{searchResults}</div>;
+  return <div>{searchResults}</div>;
 }
