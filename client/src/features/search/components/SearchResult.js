@@ -1,6 +1,10 @@
 import React from "react";
+import { useSystemMode } from "../../../SystemModeContext";
+import moment from "moment";
 
-export default function SearchResult({ result }) {
+export default function SearchResultBootstrap({ result }) {
+  const systemMode = useSystemMode();
+
   let freelancerCategories = [];
   let freelancerPostings = [];
   let buyerCategories = [];
@@ -16,13 +20,15 @@ export default function SearchResult({ result }) {
     }
   });
 
+  console.log(result)
+
   return (
-    <div className="result__div form-formatting">
-      <div>
-        <h2 className="result__header-text">{result.username}</h2>
+    <div class="card mx-auto mb-3 text-center w-45" style={{ width: "18rem" }}>
+      <div class={`card-header text-white colors-${systemMode.toLowerCase()}`}>
+        <h5 class="card-title">{result.username}</h5>
       </div>
-      <div className="result__body">
-        <h4>
+      <div class="card-body">
+        <h5 class="card-title mb-3">
           {buyerPostings.length}
           {" Buyer "}
           {buyerPostings.length === 1 ? "Posting" : "Postings"}
@@ -30,19 +36,26 @@ export default function SearchResult({ result }) {
           {freelancerPostings.length}
           {" Freelancer "}
           {freelancerPostings.length === 1 ? "Posting" : "Postings"}
-        </h4>
+        </h5>
         {freelancerCategories.length > 0 ? (
-          <div className="result__categories">
-            <p>Freelancing Specialties</p>
-            <span>{freelancerCategories.join(" • ")}</span>
+          <div>
+            <p class="card-text text-colors-freelancer font-weight-bold">
+              Freelancing Specialties
+            </p>
+            <p class="card-text">{freelancerCategories.join(" • ")}</p>
           </div>
         ) : null}
         {buyerCategories.length > 0 ? (
-          <div className="result__categories">
-            <p>Buyer Needs</p>
-            <span>{buyerCategories.join(" • ")}</span>
+          <div>
+            <p class="card-text mt-2 text-colors-buyer font-italic">
+              Buyer Needs
+            </p>
+            <p class="card-text">{buyerCategories.join(" • ")}</p>
           </div>
         ) : null}
+      </div>
+      <div class="card-footer text-muted color-grey">
+        Member Since {moment(result.created_at).format("MMM DD, YYYY")}
       </div>
     </div>
   );
