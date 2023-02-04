@@ -37,8 +37,11 @@ export default function NavbarComponent({
       </Navbar.Collapse>
       <nav class="navbar bg-body-tertiary">
         <form class="container-fluid justify-content-start">
-          {/* <button class="btn btn-outline-success me-3" type="button" onClick={toggleSystemMode}> */}
-          <button class={`btn navbar-colors-${systemMode.toLowerCase()} me-3`} type="button" onClick={toggleSystemMode}>
+          <button
+            class={`btn me-3 navbar-colors-${systemMode.toLowerCase()}`}
+            type="button"
+            onClick={toggleSystemMode}
+          >
             Switch to {systemMode === "Freelancer" ? "Buying" : "Freelancing"}
           </button>
           <button
