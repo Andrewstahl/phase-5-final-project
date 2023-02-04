@@ -76,7 +76,7 @@ export default function MessageList({ conversation, messages, onSubmit }) {
         <div class={`card-header colors-${systemMode.toLowerCase()} text-white font-weight-bold`}>
           <div class="d-flex">
             <div id="selected-conversation-information">
-              <span class="fs-3 fw-bold w-100 text-right">
+              <span class="fs-1 fw-bold w-100 text-right">
                 Chat with {conversationUsers.join(", ")}
               </span>
               <p class="fst-italic">{conversation.messages.length} Messages</p>

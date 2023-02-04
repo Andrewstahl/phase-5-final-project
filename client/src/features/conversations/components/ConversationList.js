@@ -87,7 +87,7 @@ export default function ConversationList({
             </label>
           </div>
         </div>
-        <div class="card-body" style={{ height: "61vh" }}>
+        <div class="card-body" style={{ height: "55vh" }}>
           <ul class="list-group list-group-flush">{conversationElements}</ul>
         </div>
       </div>
