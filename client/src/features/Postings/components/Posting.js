@@ -8,7 +8,7 @@ export default function Posting({ posting, onEdit, onDelete }) {
     <>
       <div class="card text-center w-50 d-flex mx-auto">
         <div
-          class={`card-header text-uppercase text-white colors-${systemMode.toLowerCase()}`}
+          class={`card-header fw-bold text-uppercase text-white colors-${systemMode.toLowerCase()}`}
         >
           {posting.title}
         </div>
