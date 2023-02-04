@@ -6,9 +6,8 @@ import "./assets/postings.css";
 import { useUser } from "../../components/App";
 
 export default function PostingsIndex() {
-  
   const user = useUser();
-  
+
   const [showPostingForm, setShowPostingForm] = useState(false);
   const [currentPosting, setCurrentPosting] = useState(null);
   const [fetchMethod, setFetchMethod] = useState("");
@@ -20,7 +19,7 @@ export default function PostingsIndex() {
   function togglePostingForm() {
     setShowPostingForm(!showPostingForm);
     setCurrentPosting(null);
-    setErrors([])
+    setErrors([]);
     setFetchMethod("POST");
   }
 
@@ -78,24 +77,29 @@ export default function PostingsIndex() {
     fetch(`/postings/${deletedPosting.id}`, {
       method: "DELETE",
       headers: {
-        "CONTENT-TYPE": "application/json"
-      }
+        "CONTENT-TYPE": "application/json",
+      },
     }).then((r) => {
       if (r.ok) {
-        setPostings(postings.filter((posting) => posting.id !== deletedPosting.id))
+        setPostings(
+          postings.filter((posting) => posting.id !== deletedPosting.id)
+        );
       }
-    })
+    });
   }
 
-  const filteredPostsBySiteMode = postings.filter((posting) => posting.posting_type === systemMode)
+  const filteredPostsBySiteMode = postings.filter(
+    (posting) => posting.posting_type === systemMode
+  );
 
   return (
     <>
       <h1 className="page-header">Your {systemMode} Postings</h1>
-      <div className="posting-form-button__div">
+      <div class="text-center">
         <button
-          className={`posting-form-button colors-${systemMode.toLowerCase()}`}
+          type="button"
           onClick={togglePostingForm}
+          class={`btn fs-4 inverse-button-colors-${systemMode.toLowerCase()} ${systemMode.toLowerCase()}- colors-${systemMode.toLowerCase()}`}
         >
           Show Posting Form
         </button>
@@ -109,7 +113,11 @@ export default function PostingsIndex() {
           errors={errors}
         />
       ) : null}
-      <PostingList postings={filteredPostsBySiteMode} onEdit={handleEditClick} onDelete={handleDelete} />
+      <PostingList
+        postings={filteredPostsBySiteMode}
+        onEdit={handleEditClick}
+        onDelete={handleDelete}
+      />
     </>
   );
 }
