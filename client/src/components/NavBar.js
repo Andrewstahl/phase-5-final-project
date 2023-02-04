@@ -5,7 +5,7 @@ import { useSystemMode, useSystemModeUpdate } from "../SystemModeContext";
 import { Navbar, Nav } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
-export default function NavBar({
+export default function NavbarComponent({
   onLogoutClick,
   siteMode,
   onSiteToggle,
