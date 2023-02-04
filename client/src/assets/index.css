@@ -63,10 +63,6 @@ select,
   box-sizing: border-box;
 }
 
-/* textarea {
-  resize: vertical;
-} */
-
 input[type="submit"],
 button.login__signup__switch__button {
   width: 100%;
@@ -149,15 +145,17 @@ form + form {
 .page-header {
   text-align: center;
   font-style: italic;
-  margin: 4vh
+  margin: 4vh;
 }
 
-.color-grey {
+.color-grey,
+.active,
+.active-conversation {
   background-color: var(--grey);
 }
 
 .scroll-to-top__div {
-  position: fixed; 
+  position: fixed;
   width: 100%;
   left: 95%;
   bottom: 60px;
