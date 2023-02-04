@@ -79,3 +79,15 @@ div.conversation__single__element {
   max-width: fit-content;
   text-align: center;
 }
+
+#conversation-page-parent-div, #another-parent-div {
+  height: 100px;
+}
+
+#conversation-list-div {
+  height: 100px;
+}
+
+#message-list-div-container {
+  max-height: 50px
+}
