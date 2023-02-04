@@ -7,9 +7,9 @@ import Search from "../pages/Search";
 import Conversations from "../pages/Conversations";
 import Projects from "../pages/Projects";
 import Profile from "../pages/Profile";
-import { SystemModeProvider } from "../SystemModeContext";
-import NavBar from "./NavBar";
 import ScrollButton from "./ScrollToTop";
+import NavbarComponent from "./NavBar";
+import { SystemModeProvider } from "../SystemModeContext";
 
 /**
  * App Hierarchy
@@ -90,11 +90,7 @@ function App() {
     <>
       <UserContext.Provider value={user}>
         <SystemModeProvider>
-          <NavBar />
-          {/* <NavBar
-            onLogoutClick={handleLogout}
-            onSiteToggle={handleSiteToggle}
-          /> */}
+          <NavbarComponent />
           <div className="App">
             <Routes>
               <Route
