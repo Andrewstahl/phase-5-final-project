@@ -23,7 +23,7 @@ export default function SearchResultBootstrap({ result }) {
   return (
     <div class="card mx-auto mb-3 text-center w-45" style={{ width: "18rem" }}>
       <div class={`card-header text-white colors-${systemMode.toLowerCase()}`}>
-        <h5 class="card-title">{result.username}</h5>
+        <h5 class="card-title fw-bold">{result.username}</h5>
       </div>
       <div class="card-body">
         <h5 class="card-title mb-3">
