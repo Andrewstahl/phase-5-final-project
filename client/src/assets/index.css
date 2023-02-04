@@ -61,14 +61,14 @@ form + form {
   color: white;
 }
 
-.navbar-colors-freelancer:hover {
+.navbar-colors-freelancer:hover, .inverse-button-colors-freelancer:hover {
   border-width: 1px;
   border-style: solid;
   border-color: var(--purple-freelancer);
   color: var(--purple-freelancer);
 }
 
-.navbar-colors-buyer:hover {
+.navbar-colors-buyer:hover, .inverse-button-colors-buyer:hover {
   border-width: 1px;
   border-style: solid;
   border-color: var(--green-buyer);
