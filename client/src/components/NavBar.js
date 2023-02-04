@@ -1,90 +1,54 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import "../assets/navbar.css"
-import "../assets/index.css"
+// import "../assets/navbar.css"
+import "../assets/index.css";
 import { useSystemMode, useSystemModeUpdate } from "../SystemModeContext";
+import { Navbar, Nav } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 
-function NavBar({ onLogoutClick, siteMode, onSiteToggle }) {
-  const systemMode = useSystemMode()
-  const toggleSystemMode = useSystemModeUpdate()
-
-  const linkStyles = {
-    width: "100%",
-    height: "10%",
-    padding: ".5em",
-    fontSize: "2vw",
-    minimumFontSize: ".5vw",
-    textDecoration: "none",
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center",
-    alignItems: "center",
-    verticalAlign: "center",
-  };
-  
-  const linkStylesActive = {
-    ...linkStyles,
-    borderAround: "5px grey",
-  };
-
-  const navLinkStyles = {
-    display: "flex",
-    margin: "50px 5px",
-    borderTop: "10px white",
-    // borderBottom: "1px solid purple",
-    padding: "0px 10vw",
-  };
+export default function NavBar({
+  onLogoutClick,
+  siteMode,
+  onSiteToggle,
+}) {
+  const systemMode = useSystemMode();
+  const toggleSystemMode = useSystemModeUpdate();
 
   return (
-    <div className="navbar-div">
-      <div className={`navbar-links colors-${systemMode.toLowerCase()}`} style={{ ...navLinkStyles }}>
-        <NavLink
-          // to={`/postings/${siteMode.toLowerCase()}`}
-          to="/postings"
-          exact
-          style={({ isActive }) => (isActive ? linkStylesActive : linkStyles)}
-        >
-          Postings
-        </NavLink>
-        <NavLink
-          to="/search"
-          exact
-          style={({ isActive }) => (isActive ? linkStylesActive : linkStyles)}
-        >
-          Search
-        </NavLink>
-        <NavLink
-          to="/conversations"
-          exact
-          style={({ isActive }) => (isActive ? linkStylesActive : linkStyles)}
-        >
-          Convos
-        </NavLink>
-        <NavLink
-          to="/projects"
-          exact
-          style={({ isActive }) => (isActive ? linkStylesActive : linkStyles)}
-        >
-          Projects
-        </NavLink>
-       <NavLink
-          to="/profile"
-          exact
-          style={({ isActive }) => (isActive ? linkStylesActive : linkStyles)}
-        >
-          Profile
-        </NavLink>
-      </div>
-      <div className="navbar-action-buttons">
-        <button className={`system-toggle-button opposite-colors-${systemMode}`} onClick={toggleSystemMode}>
-          Switch to {systemMode === "Freelancer" ? "Buying" : "Freelancing"}
-        </button>
-        <button className={`logout-button opposite-colors-${systemMode}`} onClick={onLogoutClick}>
-          Logout
-        </button>
-      </div>
-    </div>
+    <Navbar bg="light" expand="lg">
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="mr-auto">
+          <LinkContainer to="/postings">
+            <Nav.Link>Postings</Nav.Link>
+          </LinkContainer>
+          <LinkContainer to="/search">
+            <Nav.Link>Search</Nav.Link>
+          </LinkContainer>
+          <LinkContainer to="/conversations">
+            <Nav.Link>Conversations</Nav.Link>
+          </LinkContainer>
+          <LinkContainer to="/projects">
+            <Nav.Link>Projects</Nav.Link>
+          </LinkContainer>
+          <LinkContainer to="/profile">
+            <Nav.Link>Profile</Nav.Link>
+          </LinkContainer>
+        </Nav>
+      </Navbar.Collapse>
+      <nav class="navbar bg-body-tertiary">
+        <form class="container-fluid justify-content-start">
+          {/* <button class="btn btn-outline-success me-3" type="button" onClick={toggleSystemMode}> */}
+          <button class={`btn navbar-colors-${systemMode.toLowerCase()} me-3`} type="button" onClick={toggleSystemMode}>
+            Switch to {systemMode === "Freelancer" ? "Buying" : "Freelancing"}
+          </button>
+          <button
+            class="btn btn-outline-danger btn-outline-secondary"
+            type="button"
+          >
+            Logout
+          </button>
+        </form>
+      </nav>
+    </Navbar>
   );
 }
-
-export default NavBar;

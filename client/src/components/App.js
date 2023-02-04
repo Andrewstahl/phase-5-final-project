@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Routes, Route } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css'
-import NavBar from "./NavBar";
 import Login from "../pages/Login";
 import Postings from "../pages/Postings";
 import Search from "../pages/Search";
@@ -9,7 +8,7 @@ import Conversations from "../pages/Conversations";
 import Projects from "../pages/Projects";
 import Profile from "../pages/Profile";
 import { SystemModeProvider } from "../SystemModeContext";
-import NavbarBootstrap from "./NavbarBootstrap";
+import NavBar from "./NavBar";
 import ScrollButton from "./ScrollToTop";
 
 /**
@@ -91,7 +90,7 @@ function App() {
     <>
       <UserContext.Provider value={user}>
         <SystemModeProvider>
-          <NavbarBootstrap />
+          <NavBar />
           {/* <NavBar
             onLogoutClick={handleLogout}
             onSiteToggle={handleSiteToggle}
