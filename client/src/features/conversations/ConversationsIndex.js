@@ -1,25 +1,23 @@
 import React, { useEffect, useState } from "react";
-import ConversationList from "./components/ConversationList";
-import { useSystemMode } from "../../SystemModeContext";
-import MessageList from "./components/MessageList";
 import "./assets/conversations.css";
 import "./assets/messages.css";
-import MessageBox from "./components/MessageBox";
 import { useUser } from "../../components/App";
 import toast, { Toaster } from "react-hot-toast";
-import NewConversationModal from "./components/NewConversationModal";
+import ConversationList from "./components/ConversationList";
+import MessageList from "./components/MessageList";
 
 export default function ConversationsIndex() {
   const [conversations, setConversations] = useState([]);
+  const [currentConversation, setCurrentConversation] = useState({});
   const [currentMessage, setCurrentMessage] = useState("");
   const [currentMessages, setCurrentMessages] = useState([]);
-  const [currentConversation, setCurrentConversation] = useState({});
+  const [conversationSearch, setConversationSearch] = useState("");
   const [fetchMethod, setFetchMethod] = useState("POST");
 
   const user = useUser();
-  const systemMode = useSystemMode();
 
-  const failureNotify = () => toast.error("Message Not Sent! Please include a message before sending.");
+  const failureNotify = () =>
+    toast.error("Message Not Sent! Please include a message before sending.");
 
   useEffect(() => {
     fetch("/conversations").then((r) => {
@@ -37,8 +35,12 @@ export default function ConversationsIndex() {
     setCurrentMessages(conversation.messages);
   }
 
+  function handleConversationSearch(search) {
+    setConversationSearch(search);
+  }
+
   function handleSubmitMessage(updatedMessage) {
-    setCurrentMessage("")
+    setCurrentMessage("");
 
     let fetchPathEnding = "";
 
@@ -93,45 +95,65 @@ export default function ConversationsIndex() {
     });
   }
 
-  function handleNewConversation(newUsername) {
-    fetch("/conversations", {
-      method: "POST", 
-      headers: {
-        "CONTENT-TYPE": "application/json"
-      },
-      body: JSON.stringify({
-        users: [user.username, newUsername]
-      })
-    }).then(r => {
-      if (r.ok) {
-        r.json().then(newConversation => {
-          setCurrentConversation(newConversation)
-          setConversations([...conversations, newConversation])
-          setCurrentMessage("")
-          setCurrentMessages([])
-        })
+  function handleCreateConversation(newUsername) {
+    let successfulRun = false;
+    
+    for (let i = 0; i < conversations.length - 1; i++) {
+      if (conversations[i].users.sort().join(",") == [user.username, newUsername].sort().join(",")) {
+        handleSelectConversation(conversations[i])
+        successfulRun = true;
+        break
       }
-    })
+    }
+
+    if (!successfulRun) {
+      fetch("/conversations", {
+        method: "POST",
+        headers: {
+          "CONTENT-TYPE": "application/json",
+        },
+        body: JSON.stringify({
+          users: [user.username, newUsername],
+        }),
+      }).then((r) => {
+        if (r.ok) {
+          r.json().then((newConversation) => {
+            setCurrentConversation(newConversation);
+            setConversations([...conversations, newConversation]);
+            setCurrentMessage("");
+            setCurrentMessages([]);
+          });
+        }
+      });
+    } 
+    
   }
+
+  const filteredConversations = conversations.filter((conversation) =>
+    conversation.users.join(",").includes(conversationSearch)
+  );
 
   return (
     <>
-      <h1 className="page-header">Your Conversations</h1>
+      <h1 class="page-header">Your Conversations</h1>
       <Toaster />
-      <div className={`conversations__div background-colors-${systemMode.toLowerCase()}`}>
-        <div className="conversation__section-div">
-          <div className="conversation__element">
-            <NewConversationModal onSubmit={handleNewConversation} />
-            <ConversationList
-              user={user}
-              conversations={conversations}
-              onSelect={handleSelectConversation}
-            />
-          </div>
-          <div className="message__section-div">
-            <MessageList user={user} conversation={currentConversation} messages={currentMessages} />
-            <MessageBox message={currentMessage} onSubmit={handleSubmitMessage} />
-          </div>
+      <div id="another-parent-div" class="container-fluid">
+        <div
+          id="conversation-page-parent-div"
+          class="row my-4 justify-content-center h-100"
+        >
+          <ConversationList
+            currentConversation={currentConversation}
+            conversations={filteredConversations}
+            onSearch={handleConversationSearch}
+            onSelect={handleSelectConversation}
+            onCreate={handleCreateConversation}
+          />
+          <MessageList
+            conversation={currentConversation}
+            messages={currentMessages}
+            onSubmit={handleSubmitMessage}
+          />
         </div>
       </div>
     </>
