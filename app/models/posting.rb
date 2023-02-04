@@ -1,6 +1,6 @@
 class Posting < ApplicationRecord
   belongs_to :user
-  has_many :projects
+  has_many :projects, dependent: :destroy
   
   scope :freelancer_postings, -> { where(posting_type: "Freelancer") }
   scope :buyer_postings, -> { where(posting_type: "Buyer") }
