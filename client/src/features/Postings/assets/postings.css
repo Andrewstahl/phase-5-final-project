@@ -1,33 +1,3 @@
-.page-header {
-  text-align: center;
-}
-
-.card {
-  /* margin: auto; */
-}
-
-.posting-form-button__div {
-  text-align: center;
-}
-
-.posting-form-button {
-  margin: 5px;
-  height: 50px;
-  font-size: large;
-  color: white;
-  font-weight: bold
-}
-
-.posting__div {
-  margin-top: 20px;
-  margin-right: 20px;
-  width: 500px;
-  /* height: 300px; */
-  text-align: center;
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  display: inline-block;
-}
-
 .posting-list__div {
   padding: 20px;
   text-align: center; 
@@ -66,10 +36,6 @@
   margin-bottom: 20px;
   margin-top: 0px;
   font-style: italic;
-}
-
-.posting-form__select-dropdown-div {
-  /* display: inline-block; */
 }
 
 .posting-form__select-dropdown-field {
