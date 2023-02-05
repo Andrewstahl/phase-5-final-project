@@ -6,7 +6,7 @@ export default function Posting({ posting, onEdit, onDelete }) {
 
   return (
     <>
-      <div class="card text-center w-50 d-flex mx-auto">
+      <div class="card text-center w-50 d-flex mx-auto mb-4">
         <div
           class={`card-header fw-bold text-uppercase text-white colors-${systemMode.toLowerCase()}`}
         >
@@ -40,13 +40,10 @@ export default function Posting({ posting, onEdit, onDelete }) {
         </div>
         <div class="btn-group card-footer text-muted">
           <form class="container-fluid justify-content-start">
-            <button class="btn btn-primary me-3" type="button">
+            <button onClick={() => onEdit(posting)} class="btn btn-primary me-3" type="button">
               Edit
             </button>
-            <button
-              class="btn btn-danger"
-              type="button"
-            >
+            <button class="btn btn-danger" type="button" onClick={() => onDelete(posting)}>
               Delete
             </button>
           </form>
