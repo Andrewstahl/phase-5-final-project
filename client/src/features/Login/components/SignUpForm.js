@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Error from "../../../components/Error";
 
-function SignUpForm({ onLogin }) {
+export default function SignUpForm({ onLogin }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
@@ -31,45 +31,63 @@ function SignUpForm({ onLogin }) {
 
   return (
     <>
-      <div>
-        <h1 className="login-page-header">Sign Up Now</h1>
-      </div>
-      <form className="form-formatting" onSubmit={(e) => handleSubmit(e)}>
-        <div>
-          <label htmlFor="username">Username</label>
+      <h1 className="page-header">Sign Up Now</h1>
+      <form class="form-formatting mb-5">
+        <div class="form-floating mb-3">
           <input
             type="text"
-            id="username"
+            class="form-control"
+            id="floatingUsername"
             name="username"
-            autoComplete="off"
             value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) => {
+              setErrors([]);
+              setUsername(e.target.value);
+            }}
+            placeholder="username"
           />
+          <label for="floatingUsername">Username</label>
         </div>
-        <div>
-          <label htmlFor="password">Password</label>
+        <div class="form-floating mb-3">
           <input
             type="password"
-            id="password"
+            class="form-control"
+            id="floatingPassword"
             name="password"
-            autoComplete="off"
+            placeholder="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => {
+              setErrors([]);
+              setPassword(e.target.value);
+            }}
           />
+          <label for="floatingPassword">Password</label>
         </div>
-        <div>
-          <label htmlFor="password-confirmation">Password Confirmation</label>
+        <div class="form-floating mb-3">
           <input
             type="password"
-            id="password-confirmation"
-            name="password-confirmation"
-            autoComplete="off"
+            class="form-control"
+            id="floatingPasswordConfirmation"
+            name="passwordConfirmation"
+            placeholder="password"
             value={passwordConfirmation}
-            onChange={(e) => setPasswordConfirmation(e.target.value)}
+            onChange={(e) => {
+              setErrors([]);
+              setPasswordConfirmation(e.target.value);
+            }}
           />
+          <label for="floatingPasswordConfirmation">
+            Password Confirmation
+          </label>
         </div>
-        <div>
-          <input className="login-form__submit-button" type="submit" value="Submit" />
+        <div class="text-center m-3">
+          <button
+            onClick={(e) => handleSubmit(e)}
+            class="btn btn-success mb-0 fs-4 text"
+            type="button"
+          >
+            Submit
+          </button>
         </div>
         <div>
           {errors.map((error) => (
@@ -80,5 +98,3 @@ function SignUpForm({ onLogin }) {
     </>
   );
 }
-
-export default SignUpForm;
