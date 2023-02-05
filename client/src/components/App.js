@@ -8,7 +8,7 @@ import Conversations from "../pages/Conversations";
 import Projects from "../pages/Projects";
 import Profile from "../pages/Profile";
 import ScrollButton from "./ScrollToTop";
-import NavbarComponent from "./NavBar";
+import NavbarComponent from "./NavbarComponent";
 import { SystemModeProvider } from "../SystemModeContext";
 
 /**
@@ -90,7 +90,7 @@ function App() {
     <>
       <UserContext.Provider value={user}>
         <SystemModeProvider>
-          <NavbarComponent />
+          <NavbarComponent onLogoutClick={handleLogout}/>
           <div className="App">
             <Routes>
               <Route
