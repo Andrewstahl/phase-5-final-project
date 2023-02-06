@@ -105,7 +105,7 @@ function App() {
                 element={<Conversations user={user} />}
               />
               <Route exact path="/projects" element={<Projects />} />
-              <Route exact path="/profile" element={<Profile />} />
+              <Route exact path="/profile" element={<Profile onDelete={handleLogout} />} />
             </Routes>
             <ScrollButton />
           </div>
