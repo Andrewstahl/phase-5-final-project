@@ -1,20 +1,23 @@
 import React, { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import ProfileForm from "./components/ProfileForm";
 import { useUser } from "../../components/App";
-import "./assets/profile.css"
+import "./assets/profile.css";
+import ChangeUsernameForm from "./components/ChangeUsernameForm";
+import ChangePasswordForm from "./components/ChangePasswordForm";
+import DeleteAccountForm from "./components/DeleteAccountForm";
 
 export default function ProfileIndex({ onDelete }) {
-  const user = useUser()
-  
+  const user = useUser();
+
   const [userData, setUserData] = useState({
     username: user.username,
     password: "",
     passwordConfirmation: "",
   });
 
-  const [deleteConfirmation, setDeleteConfirmation] = useState("");
-  const [errors, setErrors] = useState([]);
+  const [usernameErrors, setUsernameErrors] = useState([]);
+  const [passwordErrors, setPasswordErrors] = useState([]);
+  const [deleteAccountErrors, setDeleteAccountErrors] = useState([]);
 
   const successUsernameNotify = () =>
     toast.success("Username has been updated!");
@@ -25,24 +28,16 @@ export default function ProfileIndex({ onDelete }) {
   const failureNotify = () => toast.error("Account Not Updated (see errors)");
 
   function handleChange(e) {
-    e.preventDefault();
-    const name = e.target.name;
+    let name = e.target.name;
     const value = e.target.value;
-    if (name === "deleteConfirmation") {
-      setDeleteConfirmation(value);
-    } else {
-      setUserData({
-        ...userData,
-        [name]: value,
-      });
-    }
+
+    setUserData({ ...userData, [name]: value });
   }
 
-  function handleUsernameSubmit(e) {
-    e.preventDefault();
-    setErrors([]);
+  function handleUsernameSubmit() {
+    setUsernameErrors([]);
 
-    fetch("/me", {
+    fetch(`/users/${user.id}`, {
       method: "PATCH",
       headers: {
         "CONTENT-TYPE": "application/json",
@@ -54,23 +49,26 @@ export default function ProfileIndex({ onDelete }) {
       if (r.ok) {
         successUsernameNotify();
         r.json().then((user) =>
-          setUserData({ ...userData, username: user.username })
+          setUserData({
+            ...userData,
+            username: userData.username,
+          })
         );
       } else {
-        r.json().then((err) => setErrors(err.errors));
+        failureNotify();
+        r.json().then((err) => setUsernameErrors(err.errors));
       }
     });
   }
 
-  function handlePasswordSubmit(e) {
-    e.preventDefault();
-    setErrors([]);
+  function handlePasswordSubmit() {
+    setPasswordErrors([]);
 
     if (userData.password === "") {
       failureNotify();
-      setErrors(["Password cannot be blank"]);
+      setPasswordErrors(["Password cannot be blank"]);
     } else {
-      fetch("/me", {
+      fetch(`/users/${user.id}`, {
         method: "PATCH",
         headers: {
           "CONTENT-TYPE": "application/json",
@@ -89,20 +87,21 @@ export default function ProfileIndex({ onDelete }) {
           });
         } else {
           failureNotify();
-          r.json().then((err) => setErrors(err.errors));
+          r.json().then((err) => setPasswordErrors(err.errors));
         }
       });
     }
   }
 
-  function handleDeleteSubmit(e) {
-    e.preventDefault();
-    setErrors([]);
-    if (deleteConfirmation.toLowerCase() !== "delete") {
+  function handleDeleteSubmit(deleteConfirmation) {
+    setDeleteAccountErrors([]);
+    if (deleteConfirmation.toLowerCase().trim() !== "delete") {
       failureNotify();
-      setErrors(["Please enter in 'Delete' into the text box and try again"]);
+      setDeleteAccountErrors([
+        "Please enter in 'Delete' into the text box and try again",
+      ]);
     } else {
-      fetch("/me", {
+      fetch(`/users/${user.id}`, {
         method: "DELETE",
         headers: {
           "CONTENT-TYPE": "application/json",
@@ -119,7 +118,7 @@ export default function ProfileIndex({ onDelete }) {
           });
         } else {
           failureNotify();
-          r.json().then((err) => setErrors(err.errors));
+          r.json().then((err) => setDeleteAccountErrors(err.errors));
         }
       });
     }
@@ -128,14 +127,23 @@ export default function ProfileIndex({ onDelete }) {
   return (
     <>
       <Toaster />
-      <ProfileForm
-        userData={userData}
-        deleteConfirmation={deleteConfirmation}
-        errors={errors}
+      <h1 className="page-header">Profile</h1>
+      <ChangeUsernameForm
+        username={userData.username}
+        onSubmit={handleUsernameSubmit}
         onChange={handleChange}
-        onUsernameSubmit={handleUsernameSubmit}
-        onPasswordSubmit={handlePasswordSubmit}
-        onDelete={handleDeleteSubmit}
+        usernameErrors={usernameErrors}
+      />
+      <ChangePasswordForm
+        password={userData.password}
+        passwordConfirmation={userData.passwordConfirmation}
+        onSubmit={handlePasswordSubmit}
+        onChange={handleChange}
+        passwordErrors={passwordErrors}
+      />
+      <DeleteAccountForm
+        onSubmit={handleDeleteSubmit}
+        deleteAccountErrors={deleteAccountErrors}
       />
     </>
   );
