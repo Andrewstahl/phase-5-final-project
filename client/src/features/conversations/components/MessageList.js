@@ -37,7 +37,7 @@ export default function MessageList({ conversation, messages, onSubmit }) {
     (selectedUser) => selectedUser !== user.username
   );
 
-  const messageElements = conversation.messages.map((message) => {
+  const messageElements = messages.map((message) => {
     if (message.sender === user.username) {
       return (
         <div class="d-flex justify-content-end mb-4 text-end">
@@ -101,7 +101,7 @@ export default function MessageList({ conversation, messages, onSubmit }) {
               ref={newMessageInputRef}
             />
             <button
-              class={`btn colors-${systemMode.toLowerCase()} text-white fw-bold`}
+              class={`btn colors-${systemMode.toLowerCase()} inverse-button-colors-${systemMode.toLowerCase()} fw-bold`}
               type="button"
               id="button-addon1"
               onClick={() => onSubmit(newMessageInputRef.current.value)}
