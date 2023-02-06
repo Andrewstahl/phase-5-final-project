@@ -4,18 +4,12 @@ Rails.application.routes.draw do
   resources :conversations
   resources :users
   resources :postings
-  resources :buyers
-  resources :freelancers
+  resources :buyers, only: [:index, :show]
+  resources :freelancers, only: [:index, :show]
 
   get "/me", to: "users#show"
   post "signup", to: "users#create"
   post "/login", to: "sessions#create" 
   delete "/logout", to: "sessions#destroy"
-  get "/postings/freelancing", to: "freelancer_postings#index"
-  get "/postings/buying", to: "buyer_postings#index"
-
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+  
 end
