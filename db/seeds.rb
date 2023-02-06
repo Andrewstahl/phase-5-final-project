@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-# 10.times do
+# 20.times do
 #   user = User.create(
 #     username: Faker::Name.name.gsub(" ", "").downcase,
 #     password: "Testing123",
@@ -18,14 +18,17 @@ posting_categories = ["Accounting", "Administrative", "Bookkeeping", "Data Entry
 price_units = ["Hourly", "Daily", "Flat Rate"]
 posting_types = ["Freelancer", "Buyer"]
 
-20.times do 
-  posting = Posting.create(
-    user: User.all.sample,
-    title: Faker::Lorem.sentence(word_count: 5, supplemental: true),
-    description: Faker::Lorem.sentence(word_count: 50),
-    categories: posting_categories.sample(rand(1..4)),
-    price: rand(10..100),
-    price_unit: price_units.sample,
-    posting_type: posting_types.sample
-  )
-end
+# 40.times do 
+#   posting = Posting.create(
+#     user: User.all.sample,
+#     title: Faker::Lorem.sentence(word_count: 5, supplemental: true),
+#     description: Faker::Lorem.sentence(word_count: 50),
+#     categories: posting_categories.sample(rand(1..4)),
+#     price: rand(10..100),
+#     price_unit: price_units.sample,
+#     posting_type: posting_types.sample
+#   )
+# end
+
+date1 = Time.parse("2020-01-01 00:00:00")
+date2 = Time.parse("2023-03-31 12:00:00")
