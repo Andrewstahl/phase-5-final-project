@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-
-// import "../features/login/assets/login.css";
 import LoginForm from "./components/LoginForm";
 import SignUpForm from "./components/SignUpForm";
 
@@ -18,7 +16,6 @@ export default function LoginIndex({ onLogin }) {
             </h3>
             <button
               class="btn btn-dark"
-              className="login__signup__switch__button"
               onClick={() => setShowLogin(false)}
             >
               Signup
@@ -28,12 +25,12 @@ export default function LoginIndex({ onLogin }) {
       ) : (
         <>
           <SignUpForm onLogin={onLogin} />
-          <div className="login__signup__switch__container">
+          <div class="text-center">
             <h3>
               <span>Already Have an Account?</span>
             </h3>
             <button
-              className="login__signup__switch__button"
+              class="btn btn-dark"
               onClick={() => setShowLogin(true)}
             >
               Login
