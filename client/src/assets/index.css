@@ -66,6 +66,7 @@ form + form {
   border-style: solid;
   border-color: var(--purple-freelancer);
   color: var(--purple-freelancer);
+  color: var(--purple-freelancer);
 }
 
 .navbar-colors-buyer:hover, .inverse-button-colors-buyer:hover {
