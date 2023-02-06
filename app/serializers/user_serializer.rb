@@ -1,6 +1,4 @@
 class UserSerializer < ActiveModel::Serializer
-  # has_one :buyer
-  # has_one :freelancer
   has_many :postings
 
   attributes :id, :username, :created_at, :freelancer_id, :buyer_id
