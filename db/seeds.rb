@@ -6,13 +6,13 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-10.times do
-  user = User.create(
-    username: Faker::Name.name.gsub(" ", "").downcase,
-    password: "Testing123",
-    password_confirmation: "Testing123"
-  )
-end
+# 10.times do
+#   user = User.create(
+#     username: Faker::Name.name.gsub(" ", "").downcase,
+#     password: "Testing123",
+#     password_confirmation: "Testing123"
+#   )
+# end
 
 posting_categories = ["Accounting", "Administrative", "Bookkeeping", "Data Entry", "Education", "Graphic Design", "Information Technology", "Marketing", "Project Management", "Recruiting", "Sales", "Software Development", "Therapy", "Web Development", "Writing"]
 price_units = ["Hourly", "Daily", "Flat Rate"]
