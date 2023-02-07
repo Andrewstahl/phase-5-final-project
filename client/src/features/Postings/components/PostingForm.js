@@ -151,7 +151,7 @@ export default function PostingForm({ posting, onSubmit, onCancel, errors }) {
               class={`text-colors-${systemMode.toLowerCase()}`}
               for="floating-posting-form-categories"
             >
-              Works with selects
+              Select One or More Categories
             </label>
             <button
               id="btn-clear-categories"
