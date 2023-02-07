@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :current_user, only: %i[:show, :update, :destroy]
-  skip_before_action :authorized, only: %i[:index, :create]
+  before_action :current_user, only: %i[show update destroy]
+  skip_before_action :authorized, only: %i[index create]
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
   
   # GET /users

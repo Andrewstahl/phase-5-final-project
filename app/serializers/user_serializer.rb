@@ -4,13 +4,12 @@ class UserSerializer < ActiveModel::Serializer
   # belongs_to :buyer
 
   attributes :id, :username, :created_at, :freelancer_id, :buyer_id
-  
+
   def freelancer_id
-    return object.freelancer.id
-  end
-  
-  def buyer_id
-    return object.buyer.id
+    object.freelancer.id
   end
 
+  def buyer_id
+    object.buyer.id
+  end
 end

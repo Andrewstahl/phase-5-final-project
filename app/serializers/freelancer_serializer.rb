@@ -4,9 +4,8 @@ class FreelancerSerializer < ActiveModel::Serializer
   def past_projects
     object.projects.where('due_date < ?', Time.new)
   end
-  
+
   def current_projects
     object.projects.where('due_date >= ?', Time.new)
   end
-
 end

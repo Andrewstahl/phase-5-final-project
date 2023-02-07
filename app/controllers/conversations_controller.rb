@@ -1,14 +1,11 @@
 class ConversationsController < ApplicationController
-  before_action :set_conversation, only: %i[ show update destroy ]
-  
+  before_action :set_conversation, only: %i[show update destroy]
+
   # GET /conversations
   def index
-    @user = get_user
-    if @user
-      @conversations = Conversation.user_messages(@user.username)
-    else
-      @conversations = Conversation.all
-    end 
+    @user = set_user
+    @conversations = Conversation.all
+    @conversations = Conversation.user_messages(@user.username) if @user
     render json: @conversations
   end
 
@@ -44,17 +41,17 @@ class ConversationsController < ApplicationController
 
   private
 
-    def get_user
-      @user = User.find(session[:user_id])
-    end
+  def set_user
+    @user = User.find(session[:user_id])
+  end
 
-    # Use callbacks to share common setup or constraints between actions.
-    def set_conversation
-      @conversation = Conversation.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_conversation
+    @conversation = Conversation.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def conversation_params
-      params.require(:conversation).permit(:users)
-    end
+  # Only allow a list of trusted parameters through.
+  def conversation_params
+    params.require(:conversation).permit(:users)
+  end
 end
