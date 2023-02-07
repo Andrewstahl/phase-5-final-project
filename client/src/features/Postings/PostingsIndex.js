@@ -109,7 +109,6 @@ export default function PostingsIndex() {
           posting={currentPosting}
           onCancel={handleCancel}
           onSubmit={handleFormSubmission}
-          onDelete={handleDelete}
           errors={errors}
         />
       ) : null}
