@@ -1,37 +1,37 @@
 class UsersController < ApplicationController
-  before_action :current_user, only: [:show, :update, :destroy]
-  skip_before_action :authorized, only: [:index, :create]
-  
+  before_action :current_user, only: %i[:show, :update, :destroy]
+  skip_before_action :authorized, only: %i[:index, :create]
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
   
   # GET /users
   def index
     render json: User.all
   end
-  
+
   # GET /me
   def show
     @user = User.find(session[:user_id])
     render json: @user
   end
-  
+
   # POST /users
   # POST /signup
   def create
     @user = User.create!(user_params)
     @freelancer = Freelancer.create!(user: @user, rating: 0.0)
     @buyer = Buyer.create!(user: @user, rating: 0.0)
+    @user.save
     session[:user_id] = @user.id
     render json: @user, status: :created
   end
-  
-  # POST/PATCH 
+
+  # POST/PATCH
   def update
     @user = User.find(session[:user_id])
     @user.update!(user_params)
     render json: @user
   end
-  
+
   def destroy
     @user = User.find(session[:user_id])
     @user.destroy
@@ -53,7 +53,7 @@ class UsersController < ApplicationController
   end
 
   def render_unauthorized_user_response
-    render json: { errors: ["Unauthorized user"] }, status: :unauthorized
+    render json: { errors: ['Unauthorized user'] }, status: :unauthorized
   end
 
 end
