@@ -39,6 +39,10 @@ export default function ConversationsIndex() {
     setConversationSearch(search);
   }
 
+  function handleEditMessage(editedMessage) {
+    setCurrentMessage(editedMessage)
+  }
+
   function handleSubmitMessage(updatedMessage) {
     setCurrentMessage("");
 
@@ -152,7 +156,9 @@ export default function ConversationsIndex() {
           <MessageList
             conversation={currentConversation}
             messages={currentMessages}
+            currentMessage={currentMessage}
             onSubmit={handleSubmitMessage}
+            onEdit={handleEditMessage}
           />
         </div>
       </div>
