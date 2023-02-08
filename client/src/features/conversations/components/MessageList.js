@@ -58,7 +58,7 @@ export default function MessageList({ conversation, messages, currentMessage, on
         <div class="message-container d-flex justify-content-start mb-4">
           <div class="msg_cotainer">
             <p class="fw-bold">{message.sender}</p>
-            <p class="medium p-2 me-1 rounded-4 color-grey text-black">
+            <p class="medium p-2 me-1 rounded-4 colors-grey text-black">
               {message.body}
             </p>
             <span class="small mt-0 fst-italic text-muted msg_time">

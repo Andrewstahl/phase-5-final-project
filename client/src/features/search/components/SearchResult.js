@@ -52,7 +52,7 @@ export default function SearchResultBootstrap({ result }) {
           </div>
         ) : null}
       </div>
-      <div class="card-footer text-muted color-grey">
+      <div class="card-footer text-muted colors-grey">
         Member Since {moment(result.created_at).format("MMM DD, YYYY")}
       </div>
     </div>
