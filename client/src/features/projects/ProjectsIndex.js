@@ -2,21 +2,22 @@ import React, { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { useUser } from "../../components/App";
 import { useSystemMode } from "../../SystemModeContext";
-import ActiveProjectsList from "./components/ActiveProjectsList";
-import PreviousProjectsList from "./components/PreviousProjectsList";
+import ProjectsList from "./components/ProjectsList";
 import ProjectForm from "./components/ProjectForm";
 
 export default function ProjectsIndex() {
-
-  const [showProjectForm, setShowProjectForm] = useState(false)
-  const [errors, setErrors] = useState([])
-  const [currentProject, setCurrentProject] = useState(null);
-  const [fetchMethod, setFetchMethod] = useState("");
-  // Figure out how to grab projects - maybe we allow for nested data
-  // const [projects, setProjects] = useState(user.projects);
-
   const user = useUser();
   const systemMode = useSystemMode();
+
+  const [showProjectForm, setShowProjectForm] = useState(false);
+  const [errors, setErrors] = useState([]);
+  const [currentProject, setCurrentProject] = useState(null);
+  const [fetchMethod, setFetchMethod] = useState("");
+
+  const [buyerProjects, setBuyerProjects] = useState(user.buyer.projects);
+  const [freelancerProjects, setFreelancerProjects] = useState(
+    user.freelancer.projects
+  );
 
   function toggleProjectForm() {
     setShowProjectForm(!showProjectForm);
@@ -49,23 +50,36 @@ export default function ProjectsIndex() {
       headers: {
         "CONTENT-TYPE": "application/json",
       },
-      body: JSON.stringify({
-        ...project,
-        user_id: user.id,
-        project_type: systemMode,
-      }),
+      body: JSON.stringify({ ...project }),
     }).then((r) => {
       if (r.ok) {
         r.json().then((data) => {
           if (fetchMethod === "POST") {
-            // setProjects([...projects, data]);
+            if (systemMode === "Freelancer") {
+              setFreelancerProjects([...freelancerProjects, project]);
+            } else {
+              setBuyerProjects([...buyerProjects, project]);
+            }
           } else if (fetchMethod === "PATCH") {
-            // setProjects([
-            //   ...projects.filter(
-            //     (projectItem) => projectItem.id !== project.id
-            //   ),
-            //   project,
-            // ]);
+            if (systemMode === "Freelancer") {
+              const updatedProjects = freelancerProjects.map(
+                (selectedProject) => {
+                  if (selectedProject.id === project.id) {
+                    return project;
+                  }
+                  return selectedProject;
+                }
+              );
+              setFreelancerProjects([...updatedProjects]);
+            } else {
+              const updatedProjects = buyerProjects.map((selectedProject) => {
+                if (selectedProject.id === project.id) {
+                  return project;
+                }
+                return selectedProject;
+              });
+              setBuyerProjects([...updatedProjects]);
+            }
           }
           toggleProjectForm();
         });
@@ -83,9 +97,13 @@ export default function ProjectsIndex() {
       },
     }).then((r) => {
       if (r.ok) {
-        // setProjects(
-        //   projects.filter((project) => project.id !== deletedProject.id)
-        // );
+        if (systemMode === "Freelancer") {
+          const filteredProjects = freelancerProjects.filter(project => project.id !== deletedProject)
+          setFreelancerProjects(filteredProjects)
+        } else {
+          const filteredProjects = buyerProjects.filter(project => project.id !== deletedProject)
+          setBuyerProjects(filteredProjects)
+        }
       }
     });
   }
@@ -110,8 +128,13 @@ export default function ProjectsIndex() {
           errors={errors}
         />
       ) : null}
-      <ActiveProjectsList projects={""} />
-      <PreviousProjectsList projects={""} />
+      <ProjectsList
+        projects={
+          systemMode === "Freelancer" ? freelancerProjects : buyerProjects
+        }
+        onEdit={handleEditClick}
+        onDelete={handleDelete}
+      />
     </>
-  )
+  );
 }
