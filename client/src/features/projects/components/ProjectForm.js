@@ -1,3 +1,4 @@
+import moment from "moment";
 import React, { useState } from "react";
 import { useUser } from "../../../components/App";
 import Error from "../../../components/Error";
@@ -9,20 +10,27 @@ export default function ProjectForm({ project, onSubmit, onCancel, errors }) {
   const users = useUsers();
   const systemMode = useSystemMode();
 
+  console.log(project)
   const [projectData, setProjectData] = useState(() => {
     if (project) {
       return {
         freelancer_id: project.freelancer_id,
         buyer_id: project.buyer_id,
         posting_id: project.posting_id,
+        freelancer_username: project.freelancer_username,
+        buyer_username: project.buyer_username,
+        posting_title: project.posting_title,
         cost: project.cost,
-        due_date: project.due_date,
+        due_date: moment(project.due_date).format("yyyy-MM-DDThh:mm"),
       };
     } else {
       return {
         freelancer_id: systemMode === "Freelancer" ? user.id : null,
         buyer_id: systemMode === "Buyer" ? user.id : null,
         posting_id: null,
+        freelancer_username: systemMode === "Freelancer" ? user.username : null,
+        buyer_username: systemMode === "Buyer" ? user.username : null,
+        posting_title: null,
         cost: 0,
         due_date: null,
       };
@@ -33,6 +41,7 @@ export default function ProjectForm({ project, onSubmit, onCancel, errors }) {
     const name = e.target.name;
     switch (name) {
       case "user-id":
+        console.log(e.target.value)
         const selectedUserId = parseInt(
           e.target.childNodes[e.target.selectedIndex]
             .getAttribute("id")
@@ -42,11 +51,14 @@ export default function ProjectForm({ project, onSubmit, onCancel, errors }) {
         // need to attach the selected user to the buyer of the project. That is because
         // the current user will match the system mode (e.g. current user will be the freelancer
         // on the project if the system mode is set to Freelancer)
-        const keyName =
+        const keyNameId =
           systemMode === "Freelancer" ? "buyer_id" : "freelancer_id";
+        const keyNameUsername =
+          systemMode === "Freelancer" ? "buyer_username" : "freelancer_username";
         setProjectData({
           ...projectData,
-          [keyName]: selectedUserId,
+          [keyNameId]: selectedUserId,
+          [keyNameUsername]: e.target.value
         });
         break;
       case "posting-id":
@@ -58,6 +70,7 @@ export default function ProjectForm({ project, onSubmit, onCancel, errors }) {
         setProjectData({
           ...projectData,
           posting_id: selectedPostingId,
+          posting_title: e.target.value
         });
         break;
       case "cost":
@@ -89,6 +102,7 @@ export default function ProjectForm({ project, onSubmit, onCancel, errors }) {
             id="floating-project-form-postings"
             name="posting-id"
             class="form-select"
+            value={projectData.posting_title}
             onChange={(e) => handleChange(e)}
           >
             <option value="default-posting-select" selected disabled>
@@ -122,9 +136,10 @@ export default function ProjectForm({ project, onSubmit, onCancel, errors }) {
         </div>
         <div class="form-floating mb-3">
           <select
-            id="floating-project-form-buyer"
+            id="floating-project-form-user"
             name="user-id"
             class="form-select"
+            value={systemMode === "Freelancer" ? projectData.buyer_username : projectData.freelancer_username}
             onChange={(e) => handleChange(e)}
           >
             <option value="default-posting-select" selected disabled>
@@ -159,6 +174,7 @@ export default function ProjectForm({ project, onSubmit, onCancel, errors }) {
               class="form-control"
               id="floating-posting-form-cost"
               name="cost"
+              value={projectData.cost}
               onChange={(e) => handleChange(e)}
               placeholder="Enter your cost here"
             />
@@ -177,6 +193,7 @@ export default function ProjectForm({ project, onSubmit, onCancel, errors }) {
               class="form-control"
               id="floating-posting-form-date"
               name="date"
+              value={projectData.due_date}
               onChange={(e) => handleChange(e)}
               placeholder="Enter your due date here"
             />
