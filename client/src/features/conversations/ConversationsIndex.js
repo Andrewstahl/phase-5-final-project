@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useUser } from "../../components/App";
 import toast, { Toaster } from "react-hot-toast";
 import ConversationList from "./components/ConversationList";
+import MessageList from "./components/MessageList"
 
 export default function ConversationsIndex() {
   const [conversations, setConversations] = useState([]);
