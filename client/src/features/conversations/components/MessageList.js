@@ -4,7 +4,7 @@ import { useUser } from "../../../components/App";
 import { useSystemMode } from "../../../SystemModeContext";
 import moment from "moment";
 
-export default function MessageList({ conversation, messages, onSubmit }) {
+export default function MessageList({ conversation, messages, currentMessage, onSubmit, onEdit }) {
   const user = useUser();
   const systemMode = useSystemMode();
   const lastMessageRef = useRef();
@@ -98,6 +98,8 @@ export default function MessageList({ conversation, messages, onSubmit }) {
               rows="3"
               style={{ resize: "none" }}
               placeholder="Type your message..."
+              value={currentMessage}
+              onChange={(e) => onEdit(e.target.value)}
               ref={newMessageInputRef}
             />
             <button
