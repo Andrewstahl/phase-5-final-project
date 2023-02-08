@@ -6,19 +6,19 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-# 20.times do
-#   user = User.create(
-#     username: Faker::Name.name.gsub(' ', '').downcase,
-#     password: 'Testing123',
-#     password_confirmation: 'Testing123'
-#   )
-#   Freelancer.create!(user: user, rating: 0.0)
-#   Buyer.create!(user: user, rating: 0.0)
-# end
+20.times do
+  user = User.create(
+    username: Faker::Name.name.gsub(' ', '').downcase,
+    password: 'Testing123',
+    password_confirmation: 'Testing123'
+  )
+  Freelancer.create!(user: user, rating: 0.0)
+  Buyer.create!(user: user, rating: 0.0)
+end
 
 posting_categories =
   ['Accounting', 'Administrative', 'Bookkeeping', 'Data Entry', 'Education', 'Graphic Design',
-   'Information Technology', 'Marketing', 'Project Management', 'Recruiting', 'Sales', 'Software Development', 'Therapy', 'Web Development', 
+   'Information Technology', 'Marketing', 'Project Management', 'Recruiting', 'Sales', 'Software Development', 'Therapy', 'Web Development',
    'Writing']
 
 price_units = ['Hourly', 'Daily', 'Flat Rate']
@@ -39,12 +39,17 @@ end
 date1 = Time.parse('2020-01-01 00:00:00')
 date2 = Time.parse('2023-12-31 12:00:00')
 
-15.times do
+20.times do
   user = User.postings?.sample
+  buyer = Buyer.where('user_id != ?', user.id).sample
+  posting = user.postings.sample
   Project.create!(
     freelancer_id: user.freelancer.id,
-    buyer_id: Buyer.where('user_id != ?', user.id).sample.id,
-    posting_id: user.postings.sample.id,
+    buyer_id: buyer.id,
+    posting_id: posting.id,
+    freelancer_username: user.username,
+    buyer_username: buyer.user.username,
+    posting_title: posting.title,
     cost: rand(60..3000).round(-1),
     due_date: rand(date1..date2)
   )
