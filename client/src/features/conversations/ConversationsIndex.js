@@ -139,7 +139,7 @@ export default function ConversationsIndex() {
     <>
       <h1 class="page-header">Your Conversations</h1>
       <Toaster />
-      <div id="another-parent-div" class="container-fluid">
+      <div class="container-fluid">
         <div
           id="conversation-page-parent-div"
           class="row my-4 justify-content-center h-100"

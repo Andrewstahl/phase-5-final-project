@@ -4,8 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import Login from "../pages/Login";
 import Postings from "../pages/Postings";
 import Search from "../pages/Search";
-import Conversations from "../pages/Conversations";
 import Projects from "../pages/Projects";
+import Conversations from "../pages/Conversations";
 import Profile from "../pages/Profile";
 import ScrollButton from "./ScrollToTop";
 import NavbarComponent from "./NavbarComponent";
@@ -16,14 +16,18 @@ import { SystemModeProvider } from "../SystemModeContext";
  *
  * App
  * ├─── Postings
- *      ├─── Job Requests
- *           ├─── Job
- *           ├─── Job
- *           └─── Job
- *      └─── Gigs
- *           ├─── Gig
- *           ├─── Gig
- *           └─── Gig
+ *      ├─── Freelancer Postings
+ *           ├─── Posting
+ *           ├─── Posting
+ *           └─── Posting
+ *      └─── Buyer Postings
+ *           ├─── Posting
+ *           ├─── Posting
+ *           └─── Posting
+ * ├─── Search
+ *      ├─── User
+ *      ├─── User
+ *      └─── User
  * ├─── Conversations
  *      ├─── Conversation
  *           ├─── Message
@@ -32,18 +36,11 @@ import { SystemModeProvider } from "../SystemModeContext";
  *      ├─── Conversation
  *      └─── Conversation
  * ├─── Projects
- *      ├─── Requested
+ *      ├─── Project Form
+ *      └─── List List
  *           ├─── Project
  *           ├─── Project
  *           └─── Project
- *      └─── Pending
- *           ├─── Project
- *           ├─── Project
- *           └─── Project
- * ├─── Search
- *      ├─── User
- *      ├─── User
- *      └─── User
  * └─── Profile
  *
  */
@@ -101,7 +98,7 @@ function App() {
               <Route exact path="/pages/search" element={<Search />} />
               <Route
                 exact
-                path="/conversations"
+                path="/pages/conversations"
                 element={<Conversations />}
               />
               <Route exact path="/pages/projects" element={<Projects />} />
