@@ -1,11 +1,11 @@
 class BuyerSerializer < ActiveModel::Serializer
-  attributes :id, :user_id, :rating, :past_projects, :current_projects
+  attributes :id, :user_id, :rating, :projects
 
-  def past_projects
-    object.projects.where('due_date < ?', Time.new)
-  end
+  # def past_projects
+  #   object.projects.where('due_date < ?', Time.new)
+  # end
 
-  def current_projects
-    object.projects.where('due_date >= ?', Time.new)
-  end
+  # def current_projects
+  #   object.projects.where('due_date >= ?', Time.new)
+  # end
 end
