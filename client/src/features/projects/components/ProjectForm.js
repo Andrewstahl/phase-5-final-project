@@ -49,15 +49,15 @@ export default function ProjectForm({ project, onSubmit, onCancel, errors }) {
           [keyName]: selectedUserId,
         });
         break;
-      case "project-id":
-        const selectedProjectId = parseInt(
+      case "posting-id":
+        const selectedPostingId = parseInt(
           e.target.childNodes[e.target.selectedIndex]
             .getAttribute("id")
-            .replace("project-", "")
+            .replace("posting-", "")
         );
         setProjectData({
           ...projectData,
-          project_id: selectedProjectId,
+          posting_id: selectedPostingId,
         });
         break;
       case "cost":
