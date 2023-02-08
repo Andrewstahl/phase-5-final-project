@@ -19,6 +19,11 @@ class ProjectsController < ApplicationController
   # POST /projects
   def create
     @project = Project.create!(project_params)
+    # Adding these so that when the projects are displayed in the system, we
+    # can easily see the project usernames and posting title 
+    @project.freelancer_username = Freelancer.find(params[:freelancer_id]).username
+    @project.buyer_username = Buyer.find(params[:buyer_id]).username
+    @project.posting_title = Posting.find(params[:posting_id]).title
     render json: @project, status: :created, location: @project
   end
 
