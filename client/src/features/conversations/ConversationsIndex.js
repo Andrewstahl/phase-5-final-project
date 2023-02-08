@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-import "./assets/conversations.css";
-import "./assets/messages.css";
 import { useUser } from "../../components/App";
 import toast, { Toaster } from "react-hot-toast";
 import ConversationList from "./components/ConversationList";
