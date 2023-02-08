@@ -95,17 +95,17 @@ function App() {
             <Routes>
               <Route
                 exact
-                path="/postings"
-                element={<Postings user={user} />}
+                path="/pages/postings"
+                element={<Postings />}
               />
-              <Route exact path="/search" element={<Search />} />
+              <Route exact path="/pages/search" element={<Search />} />
               <Route
                 exact
                 path="/conversations"
-                element={<Conversations user={user} />}
+                element={<Conversations />}
               />
-              <Route exact path="/projects" element={<Projects />} />
-              <Route exact path="/profile" element={<Profile onDelete={handleLogout} />} />
+              <Route exact path="/pages/projects" element={<Projects />} />
+              <Route exact path="/pages/profile" element={<Profile onDelete={handleLogout} />} />
             </Routes>
             <ScrollButton />
           </div>

@@ -13,19 +13,19 @@ export default function NavbarComponent({ onLogoutClick }) {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
-          <LinkContainer to="/postings">
+          <LinkContainer to="/pages/postings">
             <Nav.Link>Postings</Nav.Link>
           </LinkContainer>
-          <LinkContainer to="/search">
+          <LinkContainer to="/pages/search">
             <Nav.Link>Search</Nav.Link>
           </LinkContainer>
-          <LinkContainer to="/conversations">
+          <LinkContainer to="/pages/conversations">
             <Nav.Link>Conversations</Nav.Link>
           </LinkContainer>
-          <LinkContainer to="/projects">
+          <LinkContainer to="/pages/projects">
             <Nav.Link>Projects</Nav.Link>
           </LinkContainer>
-          <LinkContainer to="/profile">
+          <LinkContainer to="/pages/profile">
             <Nav.Link>Profile</Nav.Link>
           </LinkContainer>
         </Nav>
