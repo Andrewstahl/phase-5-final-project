@@ -4,7 +4,13 @@ import { useUser } from "../../../components/App";
 import { useSystemMode } from "../../../SystemModeContext";
 import moment from "moment";
 
-export default function MessageList({ conversation, messages, currentMessage, onSubmit, onEdit }) {
+export default function MessageList({
+  conversation,
+  messages,
+  currentMessage,
+  onSubmit,
+  onEdit,
+}) {
   const user = useUser();
   const systemMode = useSystemMode();
   const lastMessageRef = useRef();
@@ -23,12 +29,14 @@ export default function MessageList({ conversation, messages, currentMessage, on
   if (Object.keys(conversation).length === 0) {
     return (
       <div
-        class="d-flex col-md-7 col-xl-6 text-center text-middle bg-light border border-secondary"
-        style={{ height: "72vh", verticalAlign: "center" }}
+        class="d-flex col-md-7 col-xl-6 bg-white border rounded border-grey align-items-center"
+        style={{ height: "70vh" }}
       >
-        <h4 class="h-100" style={{ height: "100px", verticalAlign: "center" }}>
-          Please Select a Conversation Before Continuing
-        </h4>
+        <div class="text-center w-100 containter-fluid">
+          <h4>
+            Please Select a Conversation Before Continuing
+          </h4>
+        </div>
       </div>
     );
   }
@@ -73,7 +81,9 @@ export default function MessageList({ conversation, messages, currentMessage, on
   return (
     <div id="message-list-div" class="col-md-8 col-xl-6 chat">
       <div class="card">
-        <div class={`card-header colors-${systemMode.toLowerCase()} text-white font-weight-bold`}>
+        <div
+          class={`card-header colors-${systemMode.toLowerCase()} text-white font-weight-bold`}
+        >
           <div class="d-flex">
             <div id="selected-conversation-information">
               <span class="fs-1 fw-bold w-100 text-right">
