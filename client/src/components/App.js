@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Routes, Route } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.min.css'
+import "bootstrap/dist/css/bootstrap.min.css";
 import Login from "../pages/Login";
 import Postings from "../pages/Postings";
 import Search from "../pages/Search";
@@ -10,6 +10,7 @@ import Profile from "../pages/Profile";
 import ScrollButton from "./ScrollToTop";
 import NavbarComponent from "./NavbarComponent";
 import { SystemModeProvider } from "../SystemModeContext";
+import Home from "../pages/Home";
 
 /**
  * App Hierarchy
@@ -74,6 +75,9 @@ function App() {
   function handleLogout() {
     fetch("/logout", {
       method: "DELETE",
+      headers: {
+        "CONTENT-TYPE": "application/json",
+      },
     }).then((r) => {
       if (r.ok) {
         setUser(null);
@@ -87,14 +91,10 @@ function App() {
     <>
       <UserContext.Provider value={user}>
         <SystemModeProvider>
-          <NavbarComponent onLogoutClick={handleLogout}/>
+          <NavbarComponent onLogoutClick={handleLogout} />
           <div className="App">
             <Routes>
-              <Route
-                exact
-                path="/pages/postings"
-                element={<Postings />}
-              />
+              <Route exact path="/pages/postings" element={<Postings />} />
               <Route exact path="/pages/search" element={<Search />} />
               <Route
                 exact
@@ -102,7 +102,12 @@ function App() {
                 element={<Conversations />}
               />
               <Route exact path="/pages/projects" element={<Projects />} />
-              <Route exact path="/pages/profile" element={<Profile onDelete={handleLogout} />} />
+              <Route
+                exact
+                path="/pages/profile"
+                element={<Profile onDelete={handleLogout} />}
+              />
+              <Route path="/" element={<Home />} />
             </Routes>
             <ScrollButton />
           </div>
