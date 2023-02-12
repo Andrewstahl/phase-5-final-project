@@ -15,7 +15,7 @@ export default function ChangePasswordForm({
     <form class="form-formatting mt-5">
       <div class="form-floating mb-3">
         <input
-          type="text"
+          type="password"
           class="form-control"
           id="floatingPassword"
           name="password"
@@ -32,7 +32,7 @@ export default function ChangePasswordForm({
       </div>
       <div class="form-floating">
         <input
-          type="text"
+          type="password"
           class="form-control"
           id="floatingPasswordConfirmation"
           name="passwordConfirmation"
