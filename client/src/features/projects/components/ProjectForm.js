@@ -4,13 +4,13 @@ import { useUser } from "../../../components/App";
 import Error from "../../../components/Error";
 import { useSystemMode } from "../../../SystemModeContext";
 import useUsers from "../../../utils/useUsers";
+import voca from 'voca'
 
 export default function ProjectForm({ project, onSubmit, onCancel, errors }) {
   const user = useUser();
   const users = useUsers();
   const systemMode = useSystemMode();
 
-  console.log(project)
   const [projectData, setProjectData] = useState(() => {
     if (project) {
       return {
@@ -41,7 +41,6 @@ export default function ProjectForm({ project, onSubmit, onCancel, errors }) {
     const name = e.target.name;
     switch (name) {
       case "user-id":
-        console.log(e.target.value)
         const selectedUserId = parseInt(
           e.target.childNodes[e.target.selectedIndex]
             .getAttribute("id")
@@ -70,7 +69,7 @@ export default function ProjectForm({ project, onSubmit, onCancel, errors }) {
         setProjectData({
           ...projectData,
           posting_id: selectedPostingId,
-          posting_title: e.target.value
+          posting_title: voca.titleCase(e.target.value.replace("-", " "))
         });
         break;
       case "cost":
