@@ -18,7 +18,7 @@ end
 
 posting_categories =
   ['Accounting', 'Administrative', 'Bookkeeping', 'Data Entry', 'Education', 'Graphic Design',
-   'Information Technology', 'Marketing', 'Project Management', 'Recruiting', 'Sales', 'Software Development', 'Therapy', 'Web Development',
+   'Information Technology', 'Marketing', 'Legal', 'Other', 'Project Management', 'Recruiting', 'Sales', 'Software Development', 'Therapy', 'Web Development',
    'Writing']
 
 price_units = ['Hourly', 'Daily', 'Flat Rate']
