@@ -21,7 +21,8 @@ export default function Posting({ posting, onEdit, onDelete }) {
           <p class="card-text">
             ${posting.price} • {posting.price_unit}
           </p>
-          {posting ? 
+          {console.log(posting)}
+          {/* {posting ? 
             <p class="card-text">
               {posting.categories.map((category) => {
                 return (
@@ -39,7 +40,7 @@ export default function Posting({ posting, onEdit, onDelete }) {
               })}
             </p>
             : null
-          }
+          } */}
         </div>
         <div class="btn-group card-footer text-muted">
           <form class="container-fluid justify-content-start">
