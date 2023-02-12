@@ -138,7 +138,9 @@ export default function PostingForm({ posting, onSubmit, onCancel, errors }) {
               <option value="information-technology">
                 Information Technology
               </option>
+              <option value="legal">Legal</option>
               <option value="marketing">Marketing</option>
+              <option value="other">Other</option>
               <option value="project-management">Project Management</option>
               <option value="recruiting">Recruiting</option>
               <option value="sales">Sales</option>
