@@ -19,11 +19,6 @@ class ProjectsController < ApplicationController
   # POST /projects
   def create
     @project = Project.create!(project_params)
-    # Adding these so that when the projects are displayed in the system, we
-    # can easily see the project usernames and posting title 
-    @project.freelancer_username = Freelancer.find(params[:freelancer_id]).username
-    @project.buyer_username = Buyer.find(params[:buyer_id]).username
-    @project.posting_title = Posting.find(params[:posting_id]).title
     render json: @project, status: :created, location: @project
   end
 
@@ -61,7 +56,7 @@ class ProjectsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def project_params
-    params.require(:project).permit(:freelancer_id, :buyer_id, :posting_id, :due_date, :cost)
+    params.require(:project).permit(:freelancer_id, :buyer_id, :posting_id, :buyer_username, :freelancer_username, :posting_title, :due_date, :cost)
   end
 
   def render_unprocessable_entity_response(invalid)
