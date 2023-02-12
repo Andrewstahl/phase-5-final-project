@@ -35,7 +35,7 @@ class PostingsController < ApplicationController
   # PATCH/PUT /posting/:id
   def update
     if @user.id == @posting.user_id
-      @posting = Posting.update!(posting_params)
+      @posting.update!(posting_params)
       render json: @posting, status: :created
     else
       render_not_authorized_response
