@@ -31,7 +31,7 @@ I built this project using a PostgreSQL database since that allowed me to deploy
 Time to jump be and join the gig economy! This application will allow you to post what you're selling or what you're looking to buy. You can also search for and communicate with other users on the platform. Finally, when you've connected with the right people and you have a clear understanding of what you're looking to accomplish, you can create a project to kick off your partnership.
 
 Check out this gif for a quick walkthrough of the final project (this might take about 15-25 seconds to load):
-![](https://github.com/Andrewstahl/phase-4-final-project/blob/main/media/Flatiron%20Phase%204%20-%20Habit%20Tracker%20Walkthrough.gif)
+![](https://github.com/Andrewstahl/phase-5-final-project/blob/main/media/Freelancer%20App%20Walkthrough.gif)
 
 ## Database Migration Structure
 Here is a quick visual for the database structure.
