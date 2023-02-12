@@ -72,7 +72,7 @@ export default function PostingsIndex() {
             setPostings(
               postings.map((selectedPosting) => {
                 if (selectedPosting.id === currentPosting.id) {
-                  return { id: currentPosting.id, ...posting };
+                  return { id: currentPosting.id, ...data };
                 } else {
                   return selectedPosting;
                 }

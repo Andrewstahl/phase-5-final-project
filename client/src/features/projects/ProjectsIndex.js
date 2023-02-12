@@ -73,7 +73,7 @@ export default function ProjectsIndex() {
               setFreelancerProjects(
                 freelancerProjects.map((selectedProject) => {
                   if (selectedProject.id === currentProject.id) {
-                    return { id: currentProject.id, ...project };
+                    return { id: currentProject.id, ...data };
                   }
                   return selectedProject;
                 })
@@ -82,7 +82,7 @@ export default function ProjectsIndex() {
               setBuyerProjects(
                 buyerProjects.map((selectedProject) => {
                   if (selectedProject.id === currentProject.id) {
-                    return { id: currentProject.id, ...project };
+                    return { id: currentProject.id, ...data };
                   }
                   return selectedProject;
                 })
