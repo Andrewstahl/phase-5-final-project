@@ -79,7 +79,7 @@ export default function MessageList({ conversation, messages, currentMessage, on
               <span class="fs-1 fw-bold w-100 text-right">
                 Chat with {conversationUsers.join(", ")}
               </span>
-              <p class="fst-italic">{conversation.messages.length} Messages</p>
+              <p class="fst-italic">{messages.length} Messages</p>
             </div>
           </div>
         </div>
