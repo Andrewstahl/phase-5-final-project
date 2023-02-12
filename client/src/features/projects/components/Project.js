@@ -1,6 +1,7 @@
 import React from "react";
 import { useSystemMode } from "../../../SystemModeContext";
 import moment from "moment";
+import voca from "voca"
 
 export default function Project({ project, onEdit, onDelete }) {
   const is_in_past = Date.parse(project.due_date) < Date.parse(new Date());
@@ -12,7 +13,7 @@ export default function Project({ project, onEdit, onDelete }) {
           is_in_past ? "colors-grey" : `colors-${systemMode.toLowerCase()}`
         }`}
       >
-        {project.posting_title}
+        {voca.titleCase(project.posting_title)}
       </div>
       <div class="card-body d-flex flex-column">
         <p class="card-text">
