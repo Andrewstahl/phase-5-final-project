@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
 import { useUser } from "../../components/App";
 import { useSystemMode } from "../../SystemModeContext";
 import ProjectsList from "./components/ProjectsList";
