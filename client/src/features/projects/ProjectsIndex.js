@@ -19,7 +19,15 @@ export default function ProjectsIndex() {
     user.freelancer.projects
   );
 
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }
+
   function toggleProjectForm() {
+    scrollToTop();
     setShowProjectForm(!showProjectForm);
     setCurrentProject(null);
     setErrors([]);
@@ -27,6 +35,7 @@ export default function ProjectsIndex() {
   }
 
   function handleEditClick(selectedProject) {
+    scrollToTop();
     setShowProjectForm(true);
     setCurrentProject(selectedProject);
     setFetchMethod("PATCH");
@@ -56,29 +65,29 @@ export default function ProjectsIndex() {
         r.json().then((data) => {
           if (fetchMethod === "POST") {
             if (systemMode === "Freelancer") {
-              setFreelancerProjects([...freelancerProjects, project]);
+              setFreelancerProjects([data, ...freelancerProjects]);
             } else {
-              setBuyerProjects([...buyerProjects, project]);
+              setBuyerProjects([data, ...buyerProjects]);
             }
           } else if (fetchMethod === "PATCH") {
             if (systemMode === "Freelancer") {
-              const updatedProjects = freelancerProjects.map(
-                (selectedProject) => {
-                  if (selectedProject.id === project.id) {
-                    return project;
+              setFreelancerProjects(
+                freelancerProjects.map((selectedProject) => {
+                  if (selectedProject.id === currentProject.id) {
+                    return { id: currentProject.id, ...project };
                   }
                   return selectedProject;
-                }
+                })
               );
-              setFreelancerProjects([...updatedProjects]);
             } else {
-              const updatedProjects = buyerProjects.map((selectedProject) => {
-                if (selectedProject.id === project.id) {
-                  return project;
-                }
-                return selectedProject;
-              });
-              setBuyerProjects([...updatedProjects]);
+              setBuyerProjects(
+                buyerProjects.map((selectedProject) => {
+                  if (selectedProject.id === currentProject.id) {
+                    return { id: currentProject.id, ...project };
+                  }
+                  return selectedProject;
+                })
+              );
             }
           }
           toggleProjectForm();
@@ -98,11 +107,15 @@ export default function ProjectsIndex() {
     }).then((r) => {
       if (r.ok) {
         if (systemMode === "Freelancer") {
-          const filteredProjects = freelancerProjects.filter(project => project.id !== deletedProject)
-          setFreelancerProjects(filteredProjects)
+          const filteredProjects = freelancerProjects.filter(
+            (project) => project.id !== deletedProject.id
+          );
+          setFreelancerProjects(filteredProjects);
         } else {
-          const filteredProjects = buyerProjects.filter(project => project.id !== deletedProject)
-          setBuyerProjects(filteredProjects)
+          const filteredProjects = buyerProjects.filter(
+            (project) => project.id !== deletedProject.id
+          );
+          setBuyerProjects(filteredProjects);
         }
       }
     });
