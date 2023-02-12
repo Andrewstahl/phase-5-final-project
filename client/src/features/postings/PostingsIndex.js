@@ -11,12 +11,22 @@ export default function PostingsIndex() {
   const [showPostingForm, setShowPostingForm] = useState(false);
   const [currentPosting, setCurrentPosting] = useState(null);
   const [fetchMethod, setFetchMethod] = useState("");
-  const [postings, setPostings] = useState(user.postings);
+  const [postings, setPostings] = useState(
+    user.postings.sort(function(a, b) { return new Date(b.updated_at) - new Date(a.updated_at)})
+  );
   const [errors, setErrors] = useState([]);
 
   const systemMode = useSystemMode();
 
+  function scrollToTop() {
+    window.scrollTo({
+      top: 0, 
+      behavior: 'smooth'
+    })
+  }
+
   function togglePostingForm() {
+    scrollToTop()
     setShowPostingForm(!showPostingForm);
     setCurrentPosting(null);
     setErrors([]);
@@ -24,6 +34,7 @@ export default function PostingsIndex() {
   }
 
   function handleEditClick(selectedPosting) {
+    scrollToTop()
     setShowPostingForm(true);
     setCurrentPosting(selectedPosting);
     setFetchMethod("PATCH");
@@ -56,14 +67,17 @@ export default function PostingsIndex() {
       if (r.ok) {
         r.json().then((data) => {
           if (fetchMethod === "POST") {
-            setPostings([...postings, data]);
+            setPostings([data, ...postings]);
           } else if (fetchMethod === "PATCH") {
-            setPostings([
-              ...postings.filter(
-                (postingItem) => postingItem.id !== posting.id
-              ),
-              posting,
-            ]);
+            setPostings(
+              postings.map((selectedPosting) => {
+                if (selectedPosting.id === currentPosting.id) {
+                  return { id: currentPosting.id, ...posting };
+                } else {
+                  return selectedPosting;
+                }
+              })
+            );
           }
           togglePostingForm();
         });
