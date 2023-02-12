@@ -9,7 +9,7 @@ export default function ConversationList({
   conversations,
   onSearch,
   onSelect,
-  onCreate
+  onCreate,
 }) {
   const [showUsersDropdown, setShowUsersDropdown] = useState(false);
 
@@ -39,10 +39,13 @@ export default function ConversationList({
   });
 
   return (
-    <div id="conversation-list-div" class="col-md-4 col-xl-3 chat">
+    <div
+      id="conversation-list-div"
+      class="col-md-4 col-xl-3 chat"
+    >
       <div
         id="conversation-list-card"
-        class="card mb-sm-3 mb-md-0 contacts_card"
+        class="card mb-sm-3 mb-md-0 contacts_card h-100"
       >
         <div class={`card-header colors-${systemMode.toLowerCase()}`}>
           <div
@@ -54,8 +57,15 @@ export default function ConversationList({
             <BsPencilSquare style={{ color: "white" }} size={25} />
           </div>
           {showUsersDropdown ? (
-            <div class="d-flex justify-content-center" style={{ width: "100%" }}>
-              <select ref={selectUsersRef} class="form-select" aria-label="Default select example">
+            <div
+              class="d-flex justify-content-center mb-4"
+              style={{ width: "100%" }}
+            >
+              <select
+                ref={selectUsersRef}
+                class="form-select"
+                aria-label="Default select example"
+              >
                 <option selected>Select a User</option>
                 {users
                   .filter(
@@ -67,7 +77,16 @@ export default function ConversationList({
                     );
                   })}
               </select>
-              <button type="button" class="btn btn-secondary h-1" onClick={() => onCreate(selectUsersRef.current.value)}>Create</button>
+              <button
+                type="button"
+                class="btn btn-secondary h-1"
+                onClick={() => {
+                  setShowUsersDropdown(false);
+                  onCreate(selectUsersRef.current.value);
+                }}
+              >
+                Create
+              </button>
             </div>
           ) : null}
           <div class="form-floating m-0 form-control-sm">
