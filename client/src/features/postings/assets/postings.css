@@ -27,9 +27,6 @@
   margin: auto;
   width: 100%;
   margin-top: 10px;
-  /* border-top-width: 1px;
-  border-top-style: solid;
-  border-top-color: var(--grey); */
 }
 
 .posting-form__categories-paragraph {
@@ -46,9 +43,7 @@
 .posting-form__select-dropdown-button {
   width: 5%;
   font-size: 15px;
-  color: white;
   font-weight: bold;
   padding: .5em;
   text-align: center;
-  /* border-radius: 10%; */
 }
