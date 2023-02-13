@@ -53,7 +53,6 @@ export function useUser() {
 }
 
 function App() {
-  const [siteMode, setSiteMode] = useState("freelancing");
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -63,14 +62,6 @@ function App() {
       }
     });
   }, []);
-
-  function handleSiteToggle() {
-    if (siteMode === "Freelancing") {
-      setSiteMode("Buying");
-    } else {
-      setSiteMode("Freelancing");
-    }
-  }
 
   function handleLogout() {
     fetch("/logout", {
