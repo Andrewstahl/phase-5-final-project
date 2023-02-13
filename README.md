@@ -88,10 +88,10 @@ The "Profile" page will allow the user to change their credentials. They can cha
   - Add an icon for each person
 
 ## Resources
-- [Live version of project (hosted on Render)](https://stahl-freelance-app.onrender.com)
+- [Live version of project (hosted on Render)](https://stahl-freelance-platform.onrender.com)
 - [Flatiron starter code for React-Rails repository](https://github.com/learn-co-curriculum/project-template-react-rails-api)
 - [Create-React-App for starter client repository](https://github.com/facebook/create-react-app)
 
 ## Additional Posts
-- [YouTube walkthrough of the project](https://youtu.be/usV88ABxVno)
-- [Medium blog post about getting started with cookies and sessions on Rails](https://andrewstahlsoftware.medium.com/getting-started-with-cookies-session-management-ruby-on-rails-project-7878d8995cce)
+- [YouTube walkthrough of the project](https://youtu.be/oq9LVUQU9T8)
+- [Medium blog post about useContext](https://andrewstahlsoftware.medium.com/a-quick-guide-to-usecontext-in-react-a743132f147a)
