@@ -1,5 +1,6 @@
 class ConversationsController < ApplicationController
   before_action :set_conversation, only: %i[show update destroy]
+  before_action :set_user, only: %i[update destroy]
 
   # GET /conversations
   def index
@@ -27,16 +28,25 @@ class ConversationsController < ApplicationController
 
   # PATCH/PUT /conversations/1
   def update
-    if @conversation.update(conversation_params)
-      render json: @conversation
+    if @conversation.users.include? @user.username
+      if @conversation.update(conversation_params)
+        render json: @conversation
+      else
+        render json: { errors: [@conversation.errors.full_messages] }, status: :unprocessable_entity
+      end
     else
-      render json: { errors: [@conversation.errors.full_messages] }, status: :unprocessable_entity
+      render_not_authorized_response
     end
   end
 
   # DELETE /conversations/1
   def destroy
-    @conversation.destroy
+    if @conversation.users.include? @user.username
+      @conversation.destroy
+      head :no_content
+    else
+      render_not_authorized_response
+    end
   end
 
   private
@@ -53,5 +63,10 @@ class ConversationsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def conversation_params
     params.require(:conversation).permit(:users)
+  end
+
+  def render_not_authorized_response
+    render json: { errors: 'You cannot make a change to a conversation that does not belong to your account' },
+           status: :unauthorized
   end
 end

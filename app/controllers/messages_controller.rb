@@ -1,5 +1,6 @@
 class MessagesController < ApplicationController
   before_action :set_message, only: %i[show update destroy]
+  before_action :set_user, only: %i[update destroy]
 
   # GET /messages
   def index
@@ -35,12 +36,21 @@ class MessagesController < ApplicationController
 
   # DELETE /messages/1
   def destroy
-    @message.destroy
+    if @user.username == @message.sender
+      @message.destroy
+      head :no_content
+    else
+      render_not_authorized_response
+    end
   end
 
   private
 
   # Use callbacks to share common setup or constraints between actions.
+  def set_user
+    @user = User.find(session[:user_id])
+  end
+
   def set_message
     @message = Message.find(params[:id])
   end
@@ -48,5 +58,10 @@ class MessagesController < ApplicationController
   # Only allow a list of trusted parameters through.
   def message_params
     params.require(:message).permit(:body, :sender, :conversation_id)
+  end
+
+  def render_not_authorized_response
+    render json: { errors: 'You cannot make a change to a message that does not belong to your account' },
+           status: :unauthorized
   end
 end
