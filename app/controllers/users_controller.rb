@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
-  before_action :current_user, only: %i[show update destroy]
   skip_before_action :authorized, only: %i[index create]
   rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
-  
+
   # GET /users
   def index
     render json: User.all
@@ -40,10 +39,6 @@ class UsersController < ApplicationController
 
   private
 
-  def current_user
-    @user = User.find(session[:user_id])
-  end
-
   def user_params
     params.permit(:username, :password, :password_confirmation)
   end
@@ -55,5 +50,4 @@ class UsersController < ApplicationController
   def render_unauthorized_user_response
     render json: { errors: ['Unauthorized user'] }, status: :unauthorized
   end
-
 end
