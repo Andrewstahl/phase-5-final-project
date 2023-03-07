@@ -13,6 +13,7 @@ export default function ChangePasswordForm({
 
   return (
     <form class="form-formatting mt-5">
+      <h4 class="text-center mb-2">Change Your Password</h4>
       <div class="form-floating mb-3">
         <input
           type="password"

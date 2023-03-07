@@ -12,6 +12,7 @@ export default function ChangeUsernameForm({
 
   return (
     <form class="form-formatting">
+      <h4 class="text-center mb-2">Change Your Username</h4>
       <div class="form-floating">
         <input
           type="text"
