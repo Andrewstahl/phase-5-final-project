@@ -128,12 +128,12 @@ export default function ProfileIndex({ onDelete }) {
     <>
       <Toaster />
       <h1 className="page-header">Profile</h1>
-      <ChangeUsernameForm
+      {/* <ChangeUsernameForm
         username={userData.username}
         onSubmit={handleUsernameSubmit}
         onChange={handleChange}
         usernameErrors={usernameErrors}
-      />
+      /> */}
       <ChangePasswordForm
         password={userData.password}
         passwordConfirmation={userData.passwordConfirmation}
