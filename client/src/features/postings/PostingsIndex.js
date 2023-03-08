@@ -53,6 +53,8 @@ export default function PostingsIndex() {
       fetchPathEnding = `/${currentPosting.id}`;
     }
 
+    console.log("Before Submission", posting)
+    
     fetch(`/postings${fetchPathEnding}`, {
       method: fetchMethod,
       headers: {
@@ -66,6 +68,7 @@ export default function PostingsIndex() {
     }).then((r) => {
       if (r.ok) {
         r.json().then((data) => {
+          console.log("After Submission", data)
           if (fetchMethod === "POST") {
             setPostings([data, ...postings]);
           } else if (fetchMethod === "PATCH") {

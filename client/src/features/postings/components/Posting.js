@@ -21,7 +21,6 @@ export default function Posting({ posting, onEdit, onDelete }) {
           <p class="card-text">
             ${posting.price} • {posting.price_unit}
           </p>
-          {console.log(posting)}
           {/* {posting ? 
             <p class="card-text">
               {posting.categories.map((category) => {
