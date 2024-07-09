@@ -4,7 +4,8 @@ This is the repository of my Phase 5 final project for Flatiron School.
 
 *This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app). It was also built using Ruby v2.7.4 on Rails v7.0.4*
 
-[Check out the live version of project (hosted on Render)](https://stahl-freelance-app.onrender.co`0-
+[Check out the live version of project (hosted on Render)](https://stahl-freelance-app.onrender.com)
+
 ## Goal
 
 The goal of this project is to create a single-page application by leverage my knowledge of the following:
